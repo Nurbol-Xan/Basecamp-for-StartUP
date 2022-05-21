@@ -4,6 +4,7 @@
 <div class="card border-success mb-3" style="max-width: 18rem;">
   <div class="card-header"><h5><%= @post.name %></h5></div>
   <div class="card-body text-success">
+    <h6><%= pluralize(@post.views, "view") %></h6>
     <p class="card-text"><%= @post.description%></p>
   </div>
   
