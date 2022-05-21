@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-center text-primary">Posts</h1>
+
+<div id="posts" class=" overflow-hidden">
+  <% @posts.each do |post| %>
+  <div class="container card border-success mb-3" style="max-width: 18rem;">
+    <div class="card-header"><h5><%=  link_to post.name, post,class: "navbar-brand"  %></h5></div>
+      <p class="card-text"><%= post.description %></p>
+    </div>  
+  </div>
+  <% end %> 
+</div>
+
+<%# <div class="container overflow-hidden">
+  <div class="row gy-5">
+    <div class="col-6">
+      <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+    <div class="col-6">
+      <div class="p-3 border bg-light">Custom column padding</div>
+    </div>
+  </div>
+</div> %>
