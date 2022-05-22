@@ -5,12 +5,13 @@
     </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.name%>
+            </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Setting</a></li>
-                <li><a class="dropdown-item" href="#">Update</a></li>
+                <li><%= link_to "Setting", edit_user_registration_path, class:"dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>
-                <li> <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                <li><%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
             </li>
 <% else %>
