@@ -1,9 +1,9 @@
 <% if current_user %>
-        <li class="nav-item">
-                <%= link_to "+Add project", new_post_path, class: "nav-link active"%>
-        </li>
     </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+        <li class="nav-item">
+            <%= link_to "+Add project", new_post_path, class: "nav-link active"%>
+        </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <%= current_user.name%>
@@ -15,10 +15,9 @@
             </ul>
             </li>
 <% else %>
-    <li class="nav-item">
-        <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-    </li>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+        </li>
+    </ul>
 <% end %>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg ", style="background-color: rgba(0,0,0,0.46);">
     <div class="container-fluid">
         <%= link_to "Navbar", root_path, class: "navbar-brand"%>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,9 +11,10 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </ul> %>
-        </div>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <ul class=" col-auto nav justify-content-end">
             <%= render "user/session_manager"%>
-        </ul>
+           </ul>
+        </div>
+        
     </div>
 </nav>
