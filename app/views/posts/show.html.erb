@@ -1,18 +1,83 @@
-<p style="color: green"><%= notice %></p>
+<p><%= notice %></p>
+<main class="ui center aligned container">
+	<h2 style="color: white; text-align: center;"><%= @post.name %></h2>
+  <h6  style="color: white;"><%= pluralize(@post.views, "view") %></h6>
+  	<div style="border: 2px solid #1925ad">
+      <p  style="color: white; margin: 15px; left: 10%;"><%= @post.description%></p>
+    </div>
+  <%# <h1 class="fa fa-address-book-o" style="display: inline-block; margin: 0 auto; color: white; text-align: center;"><%= current_user.name %>
+	<ul class="ui filters" style="margin: 10px">
+		<li class="all-btn"><i class="circle icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
+		<li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+		<li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
+	</ul>
+	</div>
+</main>
+<style>
+        
 
+    .filters {
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      list-style: none;
+      cursor: pointer;
+    }
 
-<div class="card border-success mb-3" style="max-width: 18rem;">
-  <div class="card-header"><h5><%= @post.name %></h5></div>
-  <div class="card-body text-success">
-    <h6><%= pluralize(@post.views, "view") %></h6>
-    <p class="card-text"><%= @post.description%></p>
-  </div>
-  
-</div>
+    .online-icon {
+      color: green;
+    }
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+    .offline-icon {
+      color: red;
+    }
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
-</div>
+    .ui .cards {
+      justify-content: space-between;
+    }
+
+    .streaming span {
+      font-style: italic;
+    }
+
+    .card#online {
+      border-top: 10px solid green;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+
+    .card#offline {
+      border-top: 10px solid red;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+
+    .card#doesntExist {
+      border-top: 10px solid grey;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #online a:hover {
+      border-bottom: 1px dashed blue;
+      color: green;
+    }
+
+    #offline a:hover {
+      border-bottom: 1px dashed red;
+      color: red;
+    }
+
+</style>

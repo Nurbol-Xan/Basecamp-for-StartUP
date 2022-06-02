@@ -1,23 +1,23 @@
 <% if current_user %>
-    </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
-        <li class="nav-item">
-            <%= link_to "+Add project", new_post_path, class: "nav-link active"%>
+        <ul class="navbar-nav justify-content-end">
+        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
         </li>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <%= current_user.name%>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><%= link_to "Setting", edit_user_registration_path, class:"dropdown-item" %></li>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: rgba(1,1,1,0.80);">
+                <li><%= link_to "Setting", edit_user_registration_path, class:"dropdown-item text-info" %></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+                <li><%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item text-info" %></li>
             </ul>
             </li>
+        <ul>
 <% else %>
     <ul class="nav justify-content-end">
         <li class="nav-item">
-            <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "Log in", new_user_registration_path, class: "nav-link text-white navbar-brand"  %>
         </li>
     </ul>
 <% end %>

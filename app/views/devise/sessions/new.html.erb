@@ -3,17 +3,17 @@
     <div class="signin-signup">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name),  :html => {:class => 'sign-in-form'}) do |f| %>
       <h2 class="title">Log in</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
+        <div class="input-field" type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
+          <i class="fa fa-user"></i>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email"%>
         </div>
         <div class="input-field">
-          <i class="fas fa-lock"></i>
+          <i class="fa fa-lock"></i>
           <%= f.password_field :password, autocomplete: "current-password", type:"password", placeholder:"Password"%>
         </div>
 
           <% if devise_mapping.rememberable? %>
-            <div class="field">
+            <div class="field" style="color: white;">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </div>
@@ -37,25 +37,25 @@
         </div> %>
         <% end %>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name),  :html => {:class => 'sign-up-form'}) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <h2 class="title">Sign up</h2>
         <div class="input-field">
-          <i class="fas fa-user"></i>
+          <i class="fa fa-user"></i>
           <%= f.text_field :name, type:"text", placeholder:"Username"%>
         </div>
         <div class="input-field">
-          <i class="fas fa-envelope"></i>
+          <i class="fa fa-envelope"></i>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email" %>
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
+        </div> 
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
+          <em style="color: white;"><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        <div class="input-field">
+          <i class="fa fa-lock"></i>
           <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password" %>
         </div>
         <div class="input-field">
-          <i class="fas fa-lock"></i>
+          <i class="fa fa-lock"></i>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", type:"password", placeholder:"Password confirmation" %>
         </div>
         <%= f.submit "Sign up",type:"submit", class:"btn", value:"Sign up" %>
@@ -121,7 +121,12 @@
   }
 
   .container {
-    background-color: rgba(0,0,0,0.46);
+    position: relative;
+    cursor: pointer;
+    background-filter: blur(1vw);
+    border: 1px solid #1915ad;
+    /* background: linear-gradient(114deg, rgba(131,58,180,0.8603816526610644) 0%, rgba(128,27,102,0.8295693277310925) 49%, rgba(250,77,77,0.8547794117647058) 100%); */
+    border-radius: 5px;
     max-width: 1250px;
     max-height: 860px;
     height: 90vh;
@@ -184,7 +189,7 @@
 
   .title {
     font-size: 2.2rem;
-    color: #444;
+    color: #fff;
     margin-bottom: 10px;
   }
 
@@ -194,7 +199,7 @@
     background-color: #f0f0f0;
     margin: 10px 0;
     height: 55px;
-    border-radius: 55px;
+    border-radius: 5px;
     display: grid;
     grid-template-columns: 15% 85%;
     padding: 0 0.4rem;
@@ -270,7 +275,7 @@
   }
 
   .btn:hover {
-    background-color: #0f0;
+    background-color: #fff;
   }
   .panels-container {
     position: absolute;
@@ -290,7 +295,7 @@
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
-    background-color: rgba(71,102,183,0.46);
+    background: #1915ad;
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
@@ -533,4 +538,4 @@
   sign_in_btn.addEventListener("click", () => {
     container.classList.remove("sign-up-mode");
   });
-</script>
+</script> 
