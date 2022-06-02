@@ -3,7 +3,9 @@
 <h1 class="text-center text-white">Projects</h1>
 
 <div class="card-container">
+
   <% @posts.each do |post| %>
+    <% if current_user == post.user %>
   <div class="card">
     <div class="card-image"></div>
     <div class="card-info">
@@ -12,12 +14,13 @@
     </div>
     <div class="card-social">
       <ul>
-        <%# <li><i class="fa fa-comment-o" aria-hidden="true"></i></li>
-        <li><i class="fa fa-heart-o" aria-hidden="true"class="fa fa-share-alt"></i></li> %>
-        <li><i  aria-hidden="true"></i><%= pluralize(post.views, "view") %></li>
+        <li><nur class="float-end" ><i class="fa fa-comment-o"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.comments.length %></i></nur></li>
+        <li><i aria-hidden="true"></i></li>
+        <li><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.views %></i></nur></li>
       </ul>
     </div>
   </div>
+  <% end %>
   <% end %>
 </div>
 <style>

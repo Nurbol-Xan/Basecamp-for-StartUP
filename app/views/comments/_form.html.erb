@@ -1,0 +1,6 @@
+<%= form_with(model: [post, post.comments.build]) do |f| %>
+  <div class="form-control">
+    <%= f.text_area :body, cols:"142", rows:"4" %>
+    <%= f.submit "Reply", class: "btn btn-primary mt-1" %>
+  </div>
+<% end %>

@@ -1,21 +1,37 @@
-<p><%= notice %></p>
 <main class="ui center aligned container">
-	<h2 style="color: white; text-align: center;"><%= @post.name %></h2>
-  <h6  style="color: white;"><%= pluralize(@post.views, "view") %></h6>
+	<h2 style="color: white; text-align: center;"><%= @post.name %><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= @post.views %></i></nur></h2>
+
   	<div style="border: 2px solid #1925ad">
       <p  style="color: white; margin: 15px; left: 10%;"><%= @post.description%></p>
     </div>
   <%# <h1 class="fa fa-address-book-o" style="display: inline-block; margin: 0 auto; color: white; text-align: center;"><%= current_user.name %>
 	<ul class="ui filters" style="margin: 10px">
-		<li class="all-btn"><i class="circle icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
-		<li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+		<li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+		<li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
 		<li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
 	</ul>
-	</div>
+<br>
+  <hr class="hr">
+<div>
+
+
+  <h2 style="color: white">Write comment</h2>
+	<div class="container">
+    <%= render "comments/form", post: @post %>
+    <% @comments.each do |comment| %>
+      <%= render "comments/comment", post: @post, comment: comment %>
+    <% end %>
+  </div>
+</div>
 </main>
 <style>
-        
-
+  main{
+      background-color: rgba(1,1,1,0.2);
+  }
+    .hr{
+        color: #fff;
+        border: 5px solid #fff;
+    }
     .filters {
       display: -webkit-box;
       display: flex;
