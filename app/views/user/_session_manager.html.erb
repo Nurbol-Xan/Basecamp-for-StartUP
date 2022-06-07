@@ -1,23 +1,29 @@
 <% if current_user %>
-        <ul class="navbar-nav justify-content-end">
+    <ul class="navbar-nav justify-content-end">
         <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
         </li>
-            <li class="nav-item dropdown">
+         <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "Project", :posts, class: "nav-link text-white navbar-brand" %>
+        </li>
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= current_user.name%>
+                <%= current_user.name%>
             </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: rgba(1,1,1,0.80);">
                 <li><%= link_to "Setting", edit_user_registration_path, class:"dropdown-item text-info" %></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item text-info" %></li>
             </ul>
-            </li>
-        <ul>
+        </li>
+    </ul>
 <% else %>
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <%= link_to "Log in", new_user_registration_path, class: "nav-link text-white navbar-brand"  %>
+    <ul class="navbar-nav justify-content-end">
+        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "About", about_path, class: "nav-link text-white navbar-brand" %>
+        </li>
+        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "Log in", new_user_registration_path, class: "nav-link text-white navbar-brand" %>
         </li>
     </ul>
 <% end %>

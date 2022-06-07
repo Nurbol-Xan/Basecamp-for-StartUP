@@ -1,9 +1,9 @@
-<h1>New post</h1>
+<h1 class="text-light text-center">New post</h1>
 
 <%= render "form", post: @post %>
 
 <br>
 
-<div>
-  <%= link_to "Back to posts", posts_path %>
+<div style="position: fixed; left: 35%; bottom: 30%">
+  <%= link_to "Back to posts", posts_path,class:"btn btn-danger" %>
 </div>

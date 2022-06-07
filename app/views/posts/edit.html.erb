@@ -1,10 +1,23 @@
-<h1>Editing post</h1>
+<h1 class="text-light text-center">Editing post</h1>
 
 <%= render "form", post: @post %>
 
 <br>
 
-<div>
-  <%= link_to "Show this post", @post %> |
-  <%= link_to "Back to posts", posts_path %>
+<div style="position: fixed; left: 45%; bottom: 30%">
+  <%= link_to "Show this post", @post, class:"btn btn-primary" %> 
 </div>
+<div style="position: fixed; left: 20%; bottom: 30%">
+  <%= link_to "Back to posts", posts_path, class:"btn btn-danger" %>
+</div>
+
+<div class="container">
+  <% form_with(model: @posts) do |form| %>
+      <div class="input-field" type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
+        <label for="validationServer01">Name</label>
+        <i class="fa fa-user"></i>
+        <%= form.email_field :user %> 
+        </div>
+  <% end %>
+</div>
+<%# <%= form.submit class:"btn btn-success"%> 
