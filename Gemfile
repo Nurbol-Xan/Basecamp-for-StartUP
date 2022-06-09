@@ -28,6 +28,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data"
 gem "devise"
+gem "rails_admin"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -74,3 +75,5 @@ end
 
 
 
+gem "sassc-rails"
+gem "sassc-rails"
