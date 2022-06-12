@@ -1,0 +1,37 @@
+<h1>Questions</h1>
+
+<%= link_to "New question", new_question_path %>
+<br><br>
+
+<div id="questions">
+  <% @questions.each do |question| %>
+    <h3><%= question.content %></h3>
+    <%= time_ago_in_words(question.created_at) %> ago by <%= question.user.name %>
+    <br>
+
+    <% if can? :update, question %>
+      <%= link_to 'Edit', edit_question_path(question) %>
+    <% end %>
+
+    <% if can? :update, question %>
+      <%= link_to 'Delete', question, method: :delete, data: { confirm: "Are you sure!" } %>
+    <% end %>
+
+    <% if question.answers.any? %>
+      <h4>Answers</h4>
+      <%= render question.answers %>
+    <% end %>
+
+    <hr>
+
+    <p>Add Answer</p>
+
+    <%= form_for([question, question.answers.build]) do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit "Add Answer" %>
+    <% end %>
+
+  <% end %>
+</div>
+
+
