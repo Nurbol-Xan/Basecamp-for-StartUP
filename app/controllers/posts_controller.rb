@@ -13,9 +13,10 @@ class PostsController < ApplicationController
   def show
     @post.update(views: @post.views + 1)
     @comments = @post.comments.order(created_at: :desc)
-    if current_user
-      redirect_to questions_path
-    end
+    
+    # if current_user
+    #   redirect_to questions_path
+    # end
   end
 
   # GET /posts/new

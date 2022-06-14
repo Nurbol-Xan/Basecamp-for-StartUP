@@ -36,5 +36,5 @@ end
 
 gem "sassc-rails"
 
-gem "cancancan"
+
 

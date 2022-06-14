@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :questions do 
-    resources :answers
-  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

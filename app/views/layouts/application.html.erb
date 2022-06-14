@@ -11,23 +11,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
    
   </head>
   <body>
   <style rel="stylesheet">
              body {
-                background: rgba(0, 0, 255, 0.5);
+                background:  rgba(255, 255, 255, 0.8);
+                background-color: #8080ff;
             }
             
             .body{
                 /* hato */
+                display: inline-block; ;
                 position: absolute;
                 right: 8%;
                 left: 8%;
                 /* hato */
-                cursor: pointer;
-                background-filter: blur(1vw);
-                background-color: rgba(2,2,3,0.2);
+                
+                border-radius: 7px;
+                /* z-index: -1; */
+                /* -webkit-filter: blur(3px); */
+                /* -moz-filter: blur(3px); */
+               
+                background-filter: blur(30%);
+                /* filter: blur(3px); */
+                /* filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); */
+                background-color: rgba(2,2,3,0.5);
             }
            
 
@@ -115,6 +126,9 @@
   </div>
   </body> 
   <script>
+        // $(function() {
+        //     $( ".box" ).draggable();
+        // });
         particlesJS("particles-js", {
         "particles": {
             "number": {
