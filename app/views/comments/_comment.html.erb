@@ -1,12 +1,28 @@
-<div class="comment-<%= comment.id %> container"
-     style="border: 1px solid #fff; padding: 1em; margin: 1em; color: white">
-     <h3><%= comment.user.email %></h3>
-  <span>Posted <%= time_ago_in_words(comment.created_at)  %></span>
+<div class="comment-<%= comment.id %> container" style="color: white">
   <% if current_user == comment.user %>
-    <div class="button-group float-end">
+    <div class="btn-group float-end">
+      <%= link_to "Edit", nil, remote: true,  class:"btn btn-warning", :onclick => "edit()"; %>
       <%= button_to "Delete", [post, comment], class:"btn btn-danger", method: :delete %>
+    </div>
+    <div id="edit"  class="">
+      <%= render 'comments/form', post: @post, comment: comment %>
     </div>
   <% end %>
   <hr>
-  <%= comment.body %>
+  <div class="form-check mb-3"> 
+    <input type="checkbox" class="form-check-input" id="validationFormCheck1" required> 
+    <label class="form-check-label" for="validationFormCheck1"><%= comment.body %></label> 
+    <div class="invalid-feedback">Example invalid feedback text</div> 
+  </div>
 </div>
+<script>
+  function edit(){
+    // if(document.getElementById("edit").classList.contains("d-none")){
+      document.getElementById("edit").className = "d-flex";
+      // document.getElementById("edit").classList.add("d-flex");
+    // }else if(document.getElementById("edit").classList.contains("d-flex")){
+    //   document.getElementById("edit").classList.remove("d-flex");
+    //   document.getElementById("edit").classList.add("d-none");
+    // }
+  }
+</script>

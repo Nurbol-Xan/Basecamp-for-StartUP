@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "pages#home"
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
@@ -17,5 +18,5 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
 
-  root "pages#home"
+  
 end

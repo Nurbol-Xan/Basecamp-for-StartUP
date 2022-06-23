@@ -1,6 +1,6 @@
-<%= form_with(model: [post, post.comments.build]) do |f| %>
-  <div class="form-control">
-    <%= f.text_area :body, cols:"142", rows:"4" %>
-    <%= f.submit "Reply", class: "btn btn-primary mt-1" %>
-  </div>
+<%= form_with(model: [post, comment]) do |f| %>
+<div class="input-group mb-3">
+    <%= f.text_field  :body, class:"form-control", aria_describedby:"button-addon2", required: true  %>
+    <%= f.submit "Reply", class: "btn btn-primary",id:"button-addon2" %>
+</div>
 <% end %>

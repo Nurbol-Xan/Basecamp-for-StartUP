@@ -4,16 +4,19 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
 
 
-  def index
-    @posts = Post.all.order(created_at: :desc)
+  def index 
    
+    @posts = Post.all.order(created_at: :desc)
+ 
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post.update(views: @post.views + 1)
-    @comments = @post.comments.order(created_at: :desc)
-    
+    if current_user != @post.user
+      @post.update(views: @post.views + 1)
+    end
+    @comments = @post.comments.order(created_at: :desc) 
+    # @tasks = @post.tasks.order(created_at: :desc)
     # if current_user
     #   redirect_to questions_path
     # end

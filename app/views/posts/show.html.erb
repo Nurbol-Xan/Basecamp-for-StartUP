@@ -14,10 +14,9 @@
   <hr class="hr">
 <div>
 
-
-  <h2 style="color: white">Write comment</h2>
+  <h1 style="color: white">Task Manager</h1>
 	<div class="container">
-    <%= render "comments/form", post: @post %>
+    <%= render "comments/form", post: @post, comment: @post.comments.build %>
     <% @comments.each do |comment| %>
       <%= render "comments/comment", post: @post, comment: comment %>
     <% end %>
