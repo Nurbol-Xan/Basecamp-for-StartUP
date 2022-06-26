@@ -13,21 +13,43 @@
 <br>
   <hr class="hr">
 <div>
-
-  <h1 style="color: white">Task Manager</h1>
-	<div class="container">
-    <%= render "comments/form", post: @post, comment: @post.comments.build %>
-    <% @comments.each do |comment| %>
-      <%= render "comments/comment", post: @post, comment: comment %>
-    <% end %>
+<div class="two">
+	<div class="container1" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+    <%# <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> %>
+      <div class="container-fluid">
+       <h2 style="color: white; text-align: center;">Tasks: </h2>
+      </div>
+    </nav>
+    
+    <div style="height: 200px; overflow: auto;">
+      <% @tasks.each do |task| %>
+        <%= render 'tasks/show', post: @post, task: task%>
+      <% end %> 
+    </div>
+    <%= render "tasks/form", post: @post, task: @post.tasks.build %>
   </div>
+
+  
+</div>
+
+
 
 </div>
 </main>
 <style>
-  main{
-      background-color: rgba(1,1,1,0.2);
-  }
+.two{
+  display: flex;
+}
+  .container1{
+  width: 50%;
+  border: 1px solid #fff;
+ }
+
+   .container2{
+  width: 50%;
+  border: 1px solid #fff;
+ }
+
     .hr{
         color: #fff;
         border: 5px solid #fff;

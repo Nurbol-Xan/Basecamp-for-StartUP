@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[show index]
   # GET /posts or /posts.json
 
@@ -12,10 +13,12 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post.views = 1
     if current_user != @post.user
       @post.update(views: @post.views + 1)
     end
     @comments = @post.comments.order(created_at: :desc) 
+    @tasks = @post.tasks.order(created_at: :desc)
     # @tasks = @post.tasks.order(created_at: :desc)
     # if current_user
     #   redirect_to questions_path
@@ -72,6 +75,10 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_task
+      @task = Task.find(params[:id])
+    end
+
     def set_post
       @post = Post.find(params[:id])
     end

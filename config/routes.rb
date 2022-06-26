@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root "pages#home"
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :tasks
   end
 
   get 'about', to: 'pages#about'

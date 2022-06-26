@@ -1,0 +1,20 @@
+<div class="task-<%= task.id %> container" style="color: white">
+<hr>
+  <% if current_user == task.user %>
+    <div class="btn-group float-end">
+      <%= link_to 'Edit this task', edit_post_task_path(@post, task),  class:"btn btn-warning" %>
+      <%= button_to 'Destroy this task', [post, task], class:"btn btn-danger", method: :delete %>
+    </div>
+    <%# <%= render task %> 
+  <% end %>
+
+
+  <div class="form-check mb-3"> 
+    <input type="checkbox" class="form-check-input" id="validationFormCheck1" required> 
+    <label class="form-check-label" for="validationFormCheck1"><%= task.body %></label> 
+    <div class="invalid-feedback">Example invalid feedback text</div> 
+  </div>
+   
+    <%# <%= link_to 'Back to tasks',[post, task], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+
