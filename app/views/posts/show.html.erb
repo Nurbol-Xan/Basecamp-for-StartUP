@@ -1,20 +1,44 @@
-<main class="ui center aligned container">
-	<h2 style="color: white; text-align: center;"><%= @post.name %><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= @post.views %></i></nur></h2>
+<main class="center aligned container">
 
-  	<div style="border: 2px solid #1925ad">
-      <p  style="color: white; margin: 15px; left: 10%;"><%= @post.description%></p>
-    </div>
-  <%# <h1 class="fa fa-address-book-o" style="display: inline-block; margin: 0 auto; color: white; text-align: center;"><%= current_user.name %>
+  <div id="about" class="container">
+      <h2 style="color: white; text-align: center;">About Project<nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= @post.views %></i></nur></h2>
+    <table> 
+      <thead> 
+      <tr> 
+        <th>Name:</th> 
+        <th>Description:</th> 
+        <th>Creator:</th>
+        <th data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">Members:</th>
+        <th>Created:</th> 
+        <th>Updated:</th>
+        <th>Tasks:</th> 
+        <th>Discussions:</th> 
+      </tr> 
+      </thead> 
+      <tbody> 
+      <tr> 
+        <td><%= @post.name %></td> 
+        <td><%= @post.description %></td> 
+        <td><%= @post.user.name %></td>
+        <td><%= @post.user.name %></td>
+        <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
+        <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
+        <td><%= @post.tasks.length %></td> 
+        <td><%= @post.discussions.length %></td>
+      </tr> 
+      </tbody> 
+    </table> 
+  </div>
+  
 	<ul class="ui filters" style="margin: 10px">
 		<li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
 		<li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
 		<li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
-	</ul>
-<br>
+	</ul><br>
+
   <hr class="hr">
-<div>
-<div class="two">
-	<div class="container1" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+
+	<div class="container bor-der" id="tasks" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
     <%# <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> %>
       <div class="container-fluid">
        <h2 style="color: white; text-align: center;">Tasks: </h2>
@@ -29,29 +53,87 @@
     <%= render "tasks/form", post: @post, task: @post.tasks.build %>
   </div>
 
-  
-</div>
+  <hr class="hr">
 
+  <div class="container bor-der" id="discussions">
+    <%# <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> %>
+      <div class="container-fluid">
+       <h2 style="color: white; text-align: center;">Discussion: </h2>
+      </div>
+    </nav>
+    <%= render "discussions/form", post: @post, discussion: @post.discussions.build %>
+    <div>
+      <% @discussions.each do |discussion| %>
+        <%= render 'discussions/show', post: @post, discussion: discussion %>
+      <% end %> 
+    </div>
+    
+  </div><br><br><br><br>
 
-
-</div>
 </main>
-<style>
-.two{
-  display: flex;
-}
-  .container1{
-  width: 50%;
-  border: 1px solid #fff;
- }
+<style rel="stylesheet">
+      .bor-der{
+        border: 1px solid #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px #fff;
+      }
+      
+      table{ 
+      display: block; 
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse; 
+      border-radius: 10px;
+      overflow: hidden; 
+      box-shadow: 0px 0px 5px #fff;
+      } 
+      
+      th, 
+      td { 
+      padding: 15px; 
+      border: 1px solid #fff;
+      background-color: rgba(255,255,255,0.2); 
+      color: #fff; 
+      } 
+      
+      th,
+      td { 
+      text-align: center; 
+      } 
+      
+      thead { 
+      th { 
+        background-color: #55608f; 
+      } 
+      } 
+      
+      tbody { 
+      tr { 
+        &:hover { 
+        background-color: rgba(255,255,255,0.3); 
+        } 
+      } 
+      td { 
+        position: relative; 
+        &:hover { 
+        &:before { 
+          content: ""; 
+          position: absolute; 
+          left: 0; 
+          right: 0; 
+          top: -9999px; 
+          bottom: -9999px; 
+          background-color: rgba(255,255,255,0.2); 
+          z-index: -1; 
+        } 
+        } 
+      } 
+      }
 
-   .container2{
-  width: 50%;
-  border: 1px solid #fff;
- }
-
+  
     .hr{
         color: #fff;
+        border-radius: 5px;
         border: 5px solid #fff;
     }
     .filters {
@@ -118,4 +200,80 @@
       color: red;
     }
 
+</style>
+<style rel="stylesheet">
+    @import "bourbon";
+
+    $col-primary: #00c7ec;
+    $corner-radius: 5px;
+
+    .button {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      font-size: 30px;
+
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      color: $col-primary;
+      border: 1px solid $col-primary;
+      border-radius: $corner-radius;
+
+      line-height: 3em;
+      padding-left: 5em;
+      padding-right: 5em;
+
+      box-shadow: 0 0 0 0 transparent;
+
+      @include transition(all 0.2s ease-in);
+
+      &:hover {
+        color: white;
+        box-shadow: 0 0 30px 0 transparentize($col-primary, 0.5);
+        background-color: $col-primary;
+
+        @include transition(all 0.2s ease-out);
+
+        &:before {
+          @include animation(shine 0.5s 0s linear);
+        }
+      }
+
+      &:active {
+        box-shadow: 0 0 0 0 transparent;
+        @include transition(box-shadow 0.2s ease-in);
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        width: 0px;
+        height: 86%;
+        position: absolute;
+        top: 7%;
+        left: 0%;
+
+        opacity: 0;
+        background: white;
+        box-shadow: 0 0 15px 3px white;
+        @include transform(skewX(-20deg));
+      }
+    }
+
+    @include keyframes(shine) {
+      from {
+        opacity: 0;
+        left: 0%;
+      }
+
+      50% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        left: 100%;
+      }
+    }
 </style>

@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
     resources :tasks
+    
+    resources :discussions do 
+      resources :answers
+    end
   end
 
   get 'about', to: 'pages#about'

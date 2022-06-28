@@ -1,13 +1,40 @@
 <% if current_user %>
     <ul class="navbar-nav justify-content-end">
+    
+    <% if !@post %>
+        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
+        </li>
+    <% else %>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= @post.name%>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: rgba(1,1,1,0.80);">
+                <li><%= link_to "Edit this post", edit_post_path(@post), class:"dropdown-item text-info" %></li>
+                <li><%= button_to "Destroy this post", @post, method: :delete, class: "dropdown-item text-info" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to "Back to posts", posts_path, class:"dropdown-item text-info" %></li>
+            </ul>
+        </li>
+
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Project
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: rgba(1,1,1,0.80);">
+                <li><a  href="#about" class="dropdown-item text-info" >About project</a></li>
+                <li><a href="#tasks" class="dropdown-item text-info">Task</a></li>
+                <li><a href="#discussions" class="dropdown-item text-info">Discussions</a></li>
+            </ul>
+        </li>
+    <% end %>
         <% if warden.user.admin == true %>
         <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <%= link_to "Admin", "/admin", class: "nav-link text-white navbar-brand" %>
         </li>
         <% end %>
-        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
-        </li>
+        
         
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -29,7 +29,7 @@ class TasksController < ApplicationController
       flash[:notice] = "Task has been created"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "Task has not been created"
+      flash[:alert] = "Task has not been created"
       redirect_to post_path(@post)
     end
     # @task = Task.new(task_params)
@@ -52,9 +52,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to post_url(@post), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to post_url(@post), notice: 'Task was successfully updated.' }
       else
-        format.html { redirect_to post_url(@post), alert: 'Comment was not updated.' }
+        format.html { redirect_to post_url(@post), alert: 'Task was not updated.' }
       end
     end
     # respond_to do |format|

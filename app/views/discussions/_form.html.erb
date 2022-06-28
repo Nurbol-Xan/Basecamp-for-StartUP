@@ -1,0 +1,6 @@
+<%= form_with(model: [post, discussion], class: "contents") do |form| %>
+  <div class="input-group mb-3">
+      <%= form.text_field  :content, class:"form-control", aria_describedby:"button-addon2", required: true  %>
+      <%= form.submit "+ new description", class: "btn btn-primary",id:"button-addon2" %>
+  </div>
+<% end %>

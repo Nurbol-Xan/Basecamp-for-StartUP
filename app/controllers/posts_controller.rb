@@ -1,14 +1,11 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :set_task, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: %i[show index]
   # GET /posts or /posts.json
 
 
   def index 
-   
     @posts = Post.all.order(created_at: :desc)
- 
   end
 
   # GET /posts/1 or /posts/1.json
@@ -19,10 +16,10 @@ class PostsController < ApplicationController
     end
     @comments = @post.comments.order(created_at: :desc) 
     @tasks = @post.tasks.order(created_at: :desc)
-    # @tasks = @post.tasks.order(created_at: :desc)
-    # if current_user
-    #   redirect_to questions_path
-    # end
+    @discussions = @post.discussions.order(created_at: :desc)
+    @answers = @post.answers.order(created_at: :desc)
+
+    
   end
 
   # GET /posts/new
@@ -75,13 +72,21 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
+    # def set_task
+    #   @task = Task.find(params[:id])
+    # end
 
     def set_post
       @post = Post.find(params[:id])
     end
+
+    # def set_discussion
+    #   @discussion = Discussion.find(params[:id])
+    # end
+
+    # def set_answer
+    #   @answer = Answer.find(params[:id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def post_params

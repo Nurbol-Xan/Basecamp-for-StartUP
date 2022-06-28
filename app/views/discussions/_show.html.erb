@@ -1,0 +1,28 @@
+<div class="discussion-<%= discussion.id %> container" style="color: white">
+ <hr>
+    <% if current_user == discussion.user %>
+    <div class="btn-group float-end">
+      <%= link_to 'Edit this discussion', edit_post_discussion_path(@post, discussion),  class:"btn btn-warning" %>
+      <%= button_to 'Destroy this discussion', [post, discussion], class:"btn btn-danger", method: :delete %>
+    </div>
+  <% end %>
+
+    <%# <%= render @discussion %>
+  <div class="container"><%= discussion.content %></div>
+
+  <div class="container bor-der" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+    <%# <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> %>
+      <div class="container-fluid">
+       <h2 style="color: white; text-align: center;"><%= discussion.content %></h2>
+      </div>
+    </nav>
+    
+    <div style="height: 200px; overflow: auto;">
+      <% @answers.each do |answer| %>
+        <%= render 'answers/show', discussion: discussion, answer: answer %>
+      <% end %> 
+    </div>
+    <%= render "answers/form",post: @post, discussion: discussion, answer: discussion.answers.build %>
+  </div>
+
+</div>
