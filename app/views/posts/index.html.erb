@@ -2,38 +2,45 @@
 
 <div class="card-container">
 
-  <% @posts.each do |post| %>
-  <% if current_user == post.user%>
-  <div class="card">
-    <div class="card-image"></div>
-    <div class="card-info">
-      <div class="card-title"><%=  link_to post.name, post,class: "navbar-brand text-white"%></div>
-      <div class="card-detail"><%= post.description %></div> 
-    </div>
-    <div class="card-social">
-      <ul>
-        <li><nur class="float-end" ><i class="fa fa-comment-o"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.discussions.length %></i></nur></li>
-        <li><i aria-hidden="true"></i></li>
-        <li><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.views %></i></nur></li>
-      </ul>
-    </div>
-  </div>
-  <% elsif @public == "on"  && @private != "on" %>
-    <div class="card">
-      <div class="card-image"></div>
-      <div class="card-info">
-        <div class="card-title"><%=  link_to post.name, post,class: "navbar-brand text-white"%></div>
-        <div class="card-detail"><%= post.description %></div> 
+  <% @posts.each do |post| %> 
+    <% if current_user == post.user %>
+      <div class="card">
+        <div class="card-image"></div>
+        <div class="card-info">
+          <div class="card-title"><%=  link_to post.name, post,class: "navbar-brand text-white"%></div>
+          <div class="card-detail"><%= post.description %></div> 
+        </div>
+        <div class="card-social">
+          <ul>
+            <li><nur class="float-end" ><i class="fa fa-comment-o"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.discussions.length %></i></nur></li>
+            <li><i aria-hidden="true"></i></li>
+            <li><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.views %></i></nur></li>
+          </ul>
+        </div>
       </div>
-      <div class="card-social">
-        <ul>
-          <li><nur class="float-end" ><i class="fa fa-comment-o"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.comments.length %></i></nur></li>
-          <li><i aria-hidden="true"></i></li>
-          <li><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.views %></i></nur></li>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+    <% @post_users.each do |post_user| %>
+      <% @users.each do |user| %>
+        <% if post.id == post_user.id && user.email == post_user.content && current_user.email == post_user.content && post.id == post_user.id %>
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-info">
+              <div class="card-title"><%=  link_to post.name, post,class: "navbar-brand text-white"%></div>
+              <div class="card-detail"><%= post.description %></div> 
+            </div>
+            <div class="card-social">
+              <ul>
+                <li><nur class="float-end" ><i class="fa fa-comment-o"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.discussions.length %></i></nur></li>
+                <li><i aria-hidden="true"></i></li>
+                <li><nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= post.views %></i></nur></li>
+              </ul>
+            </div>
+          </div>
+        <% else %>
+          <% next %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 

@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: %i[show index]
+  before_action :authenticate_user!
   # GET /posts or /posts.json
 
 
   def index 
     @posts = Post.all.order(created_at: :desc)
+    @post_users = PostUser.all.order(created_at: :desc)
+    @users = User.all.order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -29,6 +31,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post_users = @post.post_users.order(created_at: :desc)
   end
 
   # POST /posts or /posts.json

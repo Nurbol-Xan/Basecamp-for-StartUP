@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   root "pages#home"
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   get '/u/:id', to: "users#profile", as: "user"
 
   resources :posts do
+    resources :post_users
     resources :comments
     resources :tasks
     

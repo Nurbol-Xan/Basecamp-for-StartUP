@@ -12,12 +12,15 @@
 </div>
 
 <div class="container">
-  <% form_with(model: @posts) do |form| %>
-      <div class="input-field" type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
-        <label for="validationServer01">Name</label>
-        <i class="fa fa-user"></i>
-        <%= form.email_field :user %> 
-        </div>
-  <% end %>
+  <div class="container-fluid">
+      <h2 style="color: white; text-align: center;">Members: </h2>
+    </div>
+    
+    <div style="height: 200px; overflow: auto;">
+      <% @post_users.each do |post_user| %>
+        <%= render 'post_users/show', post: @post, post_user: post_user %>
+      <% end %> 
+    </div>
+    <%= render "post_users/form", post: @post, post_user: @post.post_users.build %>
 </div>
 <%# <%= form.submit class:"btn btn-success"%> 

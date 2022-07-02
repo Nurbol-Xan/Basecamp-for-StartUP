@@ -1,11 +1,7 @@
 <% if current_user %>
     <ul class="navbar-nav justify-content-end">
     
-    <% if !@post %>
-        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
-        </li>
-    <% else %>
+    <% if params[:action] == "show" && params[:controller] == "posts" %>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white navbar-brand" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <%= @post.name%>
@@ -27,6 +23,10 @@
                 <li><a href="#tasks" class="dropdown-item text-info">Task</a></li>
                 <li><a href="#discussions" class="dropdown-item text-info">Discussions</a></li>
             </ul>
+        </li>
+    <% else %>
+        <li class="nav-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <%= link_to "+Add project", new_post_path, class: "nav-link text-white navbar-brand"%>
         </li>
     <% end %>
         <% if warden.user.admin == true %>

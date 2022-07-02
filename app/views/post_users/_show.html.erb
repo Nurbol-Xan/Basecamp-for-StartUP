@@ -1,0 +1,7 @@
+<div class="post_user-<%= post_user.id %> container" style="color: white">
+  <div class="form-check mb-3"> 
+    <h4><%= post_user.content %></h4>
+  </div>
+  <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
+  </div>
+</div>
