@@ -7,5 +7,4 @@ class Post < ApplicationRecord
     has_many :answers, dependent: :destroy
     accepts_nested_attributes_for :tasks
     accepts_nested_attributes_for :discussions
-    # accepts_nested_attributes_for :answers
 end

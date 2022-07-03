@@ -4,28 +4,30 @@
       <h2 style="color: white; text-align: center;">About Project<nur class="float-end" ><i class="fa fa-eye"  aria-hidden="true"><span class="position-absolute top-40 start-1 translate-middle badge rounded-pill bg-danger" style="font-size: 12px"><%= @post.views %></i></nur></h2>
     <table> 
       <thead> 
-      <tr> 
-        <th>Name:</th> 
-        <th>Description:</th> 
-        <th>Creator:</th>
-        <th data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">Members:</th>
-        <th>Created:</th> 
-        <th>Updated:</th>
-        <th>Tasks:</th> 
-        <th>Discussions:</th> 
-      </tr> 
+        <tr> 
+          <th>Name:</th> 
+          <th>Description:</th> 
+          <th>Creator:</th>
+          <th>Members:</th>
+          <th>Created:</th> 
+          <th>Updated:</th>
+          <th>Tasks:</th> 
+          <th>Discussions:</th> 
+        </tr> 
       </thead> 
       <tbody> 
-      <tr> 
-        <td><%= @post.name %></td> 
-        <td><%= @post.description %></td> 
-        <td><%= @post.user.name %></td>
-        <td><%= @post.user.name %></td>
-        <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
-        <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
-        <td><%= @post.tasks.length %></td> 
-        <td><%= @post.discussions.length %></td>
-      </tr> 
+        <tr> 
+          <td><%= @post.name %></td> 
+          <td><%= @post.description %></td> 
+          <td><%= @post.user.name %></td>
+          <% @post_users.each do |post_user| %>
+            <td><%= post_user.content %><br> <hr><%= @post.user.name %></td>
+          <% end %>
+          <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
+          <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
+          <td><%= @post.tasks.length %></td> 
+          <td><%= @post.discussions.length %></td>
+        </tr> 
       </tbody> 
     </table> 
   </div>

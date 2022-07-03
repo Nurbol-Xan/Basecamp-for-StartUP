@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_discussion, only: %i[ show edit update destroy ]
-  before_action :set_post
+  
 
   # GET /discussions or /discussions.json
   def index
@@ -13,7 +13,7 @@ class DiscussionsController < ApplicationController
     @answers = @discussion.answers.order(created_at: :desc)
   end
 
-  # GET /discussions/new
+  # GET /discussions/new      
   def new
     @discussion = Discussion.new
   end
@@ -64,9 +64,6 @@ class DiscussionsController < ApplicationController
       @discussion = Discussion.find(params[:id])
     end
 
-    def set_post
-      @post = Post.find(params[:post_id])
-    end
 
     # Only allow a list of trusted parameters through.
     def discussion_params

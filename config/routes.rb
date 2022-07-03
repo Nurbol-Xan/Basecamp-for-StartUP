@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/u/:id', to: "users#profile", as: "user"
 
+  
   resources :posts do
     resources :post_users
     resources :comments
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       resources :answers
     end
   end
+ 
 
   get 'about', to: 'pages#about'
 

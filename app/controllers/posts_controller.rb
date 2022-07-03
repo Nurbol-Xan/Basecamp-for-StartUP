@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @tasks = @post.tasks.order(created_at: :desc)
     @discussions = @post.discussions.order(created_at: :desc)
     @answers = @post.answers.order(created_at: :desc)
-
+    @post_users = @post.post_users.order(created_at: :desc)
     
   end
 

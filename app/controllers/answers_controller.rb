@@ -1,8 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_answer, only: %i[ show edit update destroy ]
-  before_action :set_post
-  before_action :set_discussion
+  
   # GET /answers or /answers.json
   def index
     @answers = Answer.all
@@ -23,22 +22,24 @@ class AnswersController < ApplicationController
 
   # POST /answers or /answers.json
   def create
-    # @post = Post.find(params[:post_id])
-    @discussiona = @post.discussions.find(params[:discussion_id])
-    @answer = @discussiona.answers.create(answer_params)
+    @post = Post.find(params[:post_id])
+    @discussion = @post.discussions.find(params[:discussion_id])
+    @answer = @discussion.answers.create(answer_params)
     @answer.user = current_user
 
-      if @answer.save
-        flash[:notice] = "Answer has been created"
-        redirect_to post_path(@post)
-      else
-        flash[:alert] = "Answer has not been created #{@discussion}"
-        redirect_to post_path(@post)
-      end
+    if @answer.save
+      flash[:notice] = "Answer has been created"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Answer has not been created"
+      redirect_to post_path(@post)
+    end
   end
 
   # PATCH/PUT /answers/1 or /answers/1.json
   def update
+    @post = Post.find(params[:post_id])
+    @discussion = @post.discussions.find(params[:discussion_id])
     @answer = @discussion.answers.find(params[:id])
     
     respond_to do |format|
@@ -67,14 +68,6 @@ class AnswersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
-    end
-    
-    def set_discussion
-      @discussion = Discussion.find(params[:discussion_id])
-    end
-
-    def set_post
-      @post = Post.find(params[:post_id])
     end
     
     # Only allow a list of trusted parameters through.
