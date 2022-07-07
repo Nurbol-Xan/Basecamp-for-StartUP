@@ -7,5 +7,4 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :discussions, dependent: :destroy
-  has_many :answers, dependent: :destroy
 end

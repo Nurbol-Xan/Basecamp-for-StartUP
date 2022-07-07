@@ -20,9 +20,10 @@
           <td><%= @post.name %></td> 
           <td><%= @post.description %></td> 
           <td><%= @post.user.name %></td>
+          <td><%= @post.user.name %>
           <% @post_users.each do |post_user| %>
-            <td><%= post_user.content %><br> <hr><%= @post.user.name %></td>
-          <% end %>
+            <hr><%= post_user.content %> <span style="color: blue;">category: </span>
+          <% end %></td>
           <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
           <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
           <td><%= @post.tasks.length %></td> 

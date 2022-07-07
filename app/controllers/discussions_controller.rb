@@ -1,7 +1,7 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_discussion, only: %i[ show edit update destroy ]
-  
+  before_action :set_post
 
   # GET /discussions or /discussions.json
   def index
@@ -10,7 +10,7 @@ class DiscussionsController < ApplicationController
 
   # GET /discussions/1 or /discussions/1.json
   def show
-    @answers = @discussion.answers.order(created_at: :desc)
+   
   end
 
   # GET /discussions/new      
@@ -62,6 +62,10 @@ class DiscussionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
       @discussion = Discussion.find(params[:id])
+    end
+
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 
 

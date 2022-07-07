@@ -14,6 +14,7 @@ class AnswersTest < ApplicationSystemTestCase
     visit answers_url
     click_on "New answer"
 
+    fill_in "Body", with: @answer.body
     click_on "Create Answer"
 
     assert_text "Answer was successfully created"
@@ -24,6 +25,7 @@ class AnswersTest < ApplicationSystemTestCase
     visit answer_url(@answer)
     click_on "Edit this answer", match: :first
 
+    fill_in "Body", with: @answer.body
     click_on "Update Answer"
 
     assert_text "Answer was successfully updated"

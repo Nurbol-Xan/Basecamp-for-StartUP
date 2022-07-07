@@ -1,7 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_answer, only: %i[ show edit update destroy ]
-  
+
   # GET /answers or /answers.json
   def index
     @answers = Answer.all
@@ -22,46 +21,40 @@ class AnswersController < ApplicationController
 
   # POST /answers or /answers.json
   def create
-    @post = Post.find(params[:post_id])
-    @discussion = @post.discussions.find(params[:discussion_id])
-    @answer = @discussion.answers.create(answer_params)
-    @answer.user = current_user
+    @answer = Answer.new(answer_params)
 
-    if @answer.save
-      flash[:notice] = "Answer has been created"
-      redirect_to post_path(@post)
-    else
-      flash[:alert] = "Answer has not been created"
-      redirect_to post_path(@post)
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to answer_url(@answer), notice: "Answer was successfully created." }
+        format.json { render :show, status: :created, location: @answer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /answers/1 or /answers/1.json
   def update
-    @post = Post.find(params[:post_id])
-    @discussion = @post.discussions.find(params[:discussion_id])
-    @answer = @discussion.answers.find(params[:id])
-    
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to post_url(@post), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to answer_url(@answer), notice: "Answer was successfully updated." }
+        format.json { render :show, status: :ok, location: @answer }
       else
-        format.html { redirect_to post_url(@post), alert: 'Answer was not updated.' }
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /answers/1 or /answers/1.json
   def destroy
-    @answer = @discussion.answers.find(params[:id])
     @answer.destroy
 
-    redirect_to post_path(@post)
-
-    # respond_to do |format|
-    #   format.html { redirect_to answers_url, notice: "Answer was successfully destroyed." }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.html { redirect_to answers_url, notice: "Answer was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -69,7 +62,7 @@ class AnswersController < ApplicationController
     def set_answer
       @answer = Answer.find(params[:id])
     end
-    
+
     # Only allow a list of trusted parameters through.
     def answer_params
       params.require(:answer).permit(:body)

@@ -17,12 +17,7 @@
       </div>
     </nav>
     
-    <div style="height: 200px; overflow: auto;">
-      <% @answers.each do |answer| %>
-        <%= render 'answers/show', discussion: discussion, answer: answer %>
-      <% end %> 
-    </div>
-    <%= render "answers/form", post: @post, discussion: discussion, answer: discussion.answers.build %>
+    
   </div>
 
 </div>
