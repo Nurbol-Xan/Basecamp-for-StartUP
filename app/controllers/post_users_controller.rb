@@ -21,8 +21,7 @@ class PostUsersController < ApplicationController
 
   # POST /post_users or /post_users.json
   def create
-    @post_user = @post.post_users.create(post_user_params)
-    @post_user.id = @post.id
+    @post_user = @post.post_users.build(post_user_params)
 
     if @post_user.save
       flash[:notice] = "Post user has been created #{@post_user.id}, #{@post.user_id}"

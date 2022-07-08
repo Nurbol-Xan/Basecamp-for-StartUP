@@ -12,14 +12,31 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post.views = 1
-    if current_user != @post.user
-      @post.update(views: @post.views + 1)
-    end
-    @comments = @post.comments.order(created_at: :desc) 
-    @tasks = @post.tasks.order(created_at: :desc)
-    @discussions = @post.discussions.order(created_at: :desc)
-    @post_users = @post.post_users.order(created_at: :desc)
+    # @post.post_users.each do |post_user|
+    #   if post_user.content == current_user.email
+    #     @post.views = 1
+    #     if current_user != @post.user
+    #       @post.update(views: @post.views + 1)
+    #     end
+    #     @comments = @post.comments.order(created_at: :desc) 
+    #     @tasks = @post.tasks.order(created_at: :desc)
+    #     @discussions = @post.discussions.order(created_at: :desc)
+    #     @post_users = @post.post_users.order(created_at: :desc)
+    #   end
+    # end
+
+    # if current_user == @post.user 
+      @post.views = 1
+      if current_user != @post.user
+        @post.update(views: @post.views + 1)
+      end
+      @comments = @post.comments.order(created_at: :desc) 
+      @tasks = @post.tasks.order(created_at: :desc)
+      @discussions = @post.discussions.order(created_at: :desc)
+      @post_users = @post.post_users.order(created_at: :desc)
+    # else
+    #   redirect_to post_url(@post), alert: "You can't go there!" 
+    # end
     
   end
 
@@ -74,22 +91,12 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_task
-    #   @task = Task.find(params[:id])
-    # end
 
     def set_post
       @post = Post.find(params[:id])
     end
 
-    # def set_discussion
-    #   @discussion = Discussion.find(params[:id])
-    # end
-
-    # def set_answer
-    #   @answer = Answer.find(params[:id])
-    # end
-
+   
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:name, :description)

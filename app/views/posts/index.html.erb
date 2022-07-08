@@ -19,9 +19,8 @@
         </div>
       </div>
     <% end %>
-    <% @post_users.each do |post_user| %>
-      <% @users.each do |user| %>
-        <% if post.id == post_user.id && user.email == post_user.content && current_user.email == post_user.content %>
+    <% post.post_users.each do |post_user| %>
+        <% if current_user.email == post_user.content %>
           <div class="card">
             <div class="card-image"></div>
             <div class="card-info">
@@ -36,9 +35,6 @@
               </ul>
             </div>
           </div>
-        <% else %>
-          <% next %>
-        <% end %>
       <% end %>
     <% end %>
   <% end %>

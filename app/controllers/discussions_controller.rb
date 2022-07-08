@@ -10,7 +10,7 @@ class DiscussionsController < ApplicationController
 
   # GET /discussions/1 or /discussions/1.json
   def show
-   
+    @answers =  @discussion.answers.order(created_at: :desc) 
   end
 
   # GET /discussions/new      

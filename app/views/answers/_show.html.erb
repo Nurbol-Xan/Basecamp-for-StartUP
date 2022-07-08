@@ -1,0 +1,9 @@
+<div class="answer-<%= answer.id %> container" style="color: white;">
+    <hr>
+    <div class="btn-group float-end">
+      <%= link_to 'Edit this answer', edit_post_discussion_answer_path(@post, discussion, answer),class:"btn btn-warning" %>
+      <%= button_to 'Destroy this answer', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
+    </div>
+    <p><%= answer.body %><p>
+</div>
+
