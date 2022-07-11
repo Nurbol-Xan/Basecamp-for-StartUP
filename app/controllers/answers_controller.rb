@@ -25,10 +25,11 @@ class AnswersController < ApplicationController
   def create
     @answer = @discussion.answers.build(answer_params)
     @answer.user_id = current_user.id
+    discussion_id = "discussion-" + @discussion.id.to_s
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to post_path(@post), notice: "Answer was successfully created." }
+        format.html { redirect_to post_path(@post, :anchor => discussion_id), notice: "Answer was successfully created." }
       else
         format.html { redirect_to post_path(@post), alert: "Answer was not successfully created." }
       end

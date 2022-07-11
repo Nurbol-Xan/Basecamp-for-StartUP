@@ -22,7 +22,7 @@
           <td><%= @post.user.name %></td>
           <td><%= @post.user.name %>
           <% @post_users.each do |post_user| %>
-            <hr><%= post_user.content %> <span style="color: blue;">category: </span>
+            <hr><%= post_user.content %>  <span style="color: blue;">category: </span><%= post_user.role %> 
           <% end %></td>
           <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
           <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
@@ -32,27 +32,26 @@
       </tbody> 
     </table> 
   </div>
+<% if @post.user == current_user %>
+  <ul class="ui filters" style="margin: 10px">
+    <li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+    <li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
+    <li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
+  </ul><br>
   
-	<ul class="ui filters" style="margin: 10px">
-		<li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
-		<li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
-		<li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
-	</ul><br>
-
   <hr class="hr">
 
-	<div class="container bor-der" id="tasks" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+  <div class="container bor-der" id="tasks" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
 
     <div class="container-fluid">
       <h2 style="color: white; text-align: center;">Tasks: </h2>
     </div>
-    
-    <div style="height: 200px; overflow: auto;">
-      <% @tasks.each do |task| %>
-        <%= render 'tasks/show', post: @post, task: task%>
-      <% end %> 
-    </div>
-    <%= render "tasks/form", post: @post, task: @post.tasks.build %>
+      <div style="height: 200px; overflow: auto;">
+        <% @tasks.each do |task| %>
+          <%= render 'tasks/show', post: @post, task: task%>
+        <% end %> 
+      </div>
+      <%= render "tasks/form", post: @post, task: @post.tasks.build %>
   </div>
 
   <hr class="hr">
@@ -62,16 +61,67 @@
     <div class="container-fluid">
       <h2 style="color: white; text-align: center;">Discussion: </h2>
     </div>
-
-    <%= render "discussions/form", post: @post, discussion: @post.discussions.build %>
+      <%= render "discussions/form", post: @post, discussion: @post.discussions.build %>
     <div>
       <% @discussions.each do |discussion| %>
         <%= render 'discussions/show', post: @post, discussion: discussion %>
       <% end %> 
     </div>
-    
+      
   </div><br><br><br><br>
+<% else %>
+  <% @post_users.each do |post_user| %>
+    <% if @post.user == current_user || post_user.admin? %>
+      <ul class="ui filters" style="margin: 10px">
+        <li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+        <li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
+        <li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
+      </ul><br>
+      <% break %>
+    <% end %>
+  
 
+    <hr class="hr">
+
+    <div class="container bor-der" id="tasks" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+
+      <div class="container-fluid">
+        <h2 style="color: white; text-align: center;">Tasks: </h2>
+      </div>
+      <% if @post.user == current_user || post_user.admin? || post_user.t_read? %>
+        <div style="height: 200px; overflow: auto;">
+          <% @tasks.each do |task| %>
+            <%= render 'tasks/show', post: @post, task: task%>
+          <% end %> 
+        </div>
+      <% else %>
+        <p style="color: yellow;">You are not authorized to view!</p>
+      <% end %>
+      <% if @post.user == current_user || post_user.admin? || post_user.t_read? && post_user.t_write? %>
+        <%= render "tasks/form", post: @post, task: @post.tasks.build %>
+      <% end %>
+    </div>
+
+    <hr class="hr">
+
+    <div class="container bor-der" id="discussions">
+      
+      <div class="container-fluid">
+        <h2 style="color: white; text-align: center;">Discussion: </h2>
+      </div>
+      <% if @post.user == current_user || post_user.admin? %>
+        <%= render "discussions/form", post: @post, discussion: @post.discussions.build %>
+      <% end %>
+      <div>
+        <% @discussions.each do |discussion| %>
+          <%= render 'discussions/show', post: @post, discussion: discussion %>
+        <% end %> 
+      </div>
+      
+    </div><br><br><br><br>
+    <% break %>
+  <% end %>
+<% end %>
 </main>
 <style rel="stylesheet">
       .bor-der{

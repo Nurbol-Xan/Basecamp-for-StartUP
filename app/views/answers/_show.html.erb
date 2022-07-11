@@ -1,9 +1,11 @@
 <div class="answer-<%= answer.id %> container" style="color: white;">
     <hr>
-    <div class="btn-group float-end">
-      <%= link_to 'Edit this answer', edit_post_discussion_answer_path(@post, discussion, answer),class:"btn btn-warning" %>
-      <%= button_to 'Destroy this answer', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
-    </div>
+    <% if current_user.id == answer.user_id %>
+      <div class="btn-group float-end">
+        <%= link_to 'Edit this answer', edit_post_discussion_answer_path(@post, answer.discussion_id, answer.id),class:"btn btn-warning" %>
+        <%= button_to 'Destroy this answer', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
+      </div>
+    <% end %>
     <p><%= answer.body %><p>
 </div>
 
