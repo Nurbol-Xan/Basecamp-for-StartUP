@@ -1,15 +1,12 @@
-<h1 class="text-light text-center">Editing post</h1>
+<h1 class="text-light text-center">Editing project</h1>
 
 <%= render "form", post: @post %>
 
-<br>
-
-<div style="position: fixed; left: 45%; bottom: 30%">
+<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="position: absolute;">
   <%= link_to "Show this post", @post, class:"btn btn-primary" %> 
-</div>
-<div style="position: fixed; left: 20%; bottom: 30%">
   <%= link_to "Back to posts", posts_path, class:"btn btn-danger" %>
 </div>
+
 
 <div class="container">
   <div class="container-fluid">

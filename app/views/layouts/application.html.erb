@@ -137,10 +137,8 @@
             
             .body{
                 /* hato */
-                display: inline-block; 
-                position: absolute;
-                right: 8%;
-                left: 8%;
+               
+                
                 /* hato */
                 
                 border-radius: 7px;
@@ -150,7 +148,7 @@
                 /* -webkit-filter: blur(3px); */
                 /* -moz-filter: blur(3px); */
                
-                background-filter: blur(30%);
+                
                 /* filter: blur(3px); */
                 /* filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); */
                 background-color: rgba(2,2,3,0.2);
@@ -234,10 +232,11 @@
  
   <header>
     <%= render 'layouts/navbar'%>
+    <br><br><br>
     <%= render 'layouts/alerts'%>
     <br>
   </header>
-    <div id='colourPicker'> 
+    <div id='colourPicker' style="position: fixed;"> 
         <div id='colourOne' class='colourOption'></div> 
         <div id='colourTwo' class='colourOption'></div> 
         <div id='colourThree' class='colourOption'></div> 
@@ -245,7 +244,7 @@
         <div id='colourFive' class='colourOption'></div> 
         <div id='colourSix'   class='colourOption'  onclick="setColor()"></div> 
     </div>
-  <div class="body">   
+  <div class="container body">   
     <%= yield %>
   </div>
   <br><br><br><br>

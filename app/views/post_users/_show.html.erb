@@ -2,6 +2,10 @@
   <div class="form-check mb-3"> 
     <h4><%= post_user.content %></h4>
   </div>
+  <% form_with(model: [post, post_user]) do |f| %>
+    <%= f.collection_check_boxes :role, PostUser.roles, :first, :last %>
+    <%= f.submit "Add roles", class:"btn btn-primary" %>
+  <% end %>
   <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
   </div>
 </div>
