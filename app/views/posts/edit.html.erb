@@ -1,23 +1,52 @@
-<h1 class="text-light text-center">Editing project</h1>
+<main class="center aligned container">
 
-<%= render "form", post: @post %>
+  <h1 class="text-light text-center">Editing project</h1>
 
-<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="position: absolute;">
-  <%= link_to "Show this post", @post, class:"btn btn-primary" %> 
-  <%= link_to "Back to posts", posts_path, class:"btn btn-danger" %>
-</div>
+  <div class="container">
+    <%= render "form", post: @post %>
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example" >
+    <%= link_to "Show this post", @post, class:"btn btn-primary" %> 
+    <%= link_to "Back to posts", posts_path, class:"btn btn-danger" %>
+  </div>
 
 
-<div class="container">
-  <div class="container-fluid">
-      <h2 style="color: white; text-align: center;">Members: </h2>
+  <hr class="hr">
+
+  <div class="container bor-der" >
+
+    <div class="container-fluid">
+      <h2 style="color: white; text-align: center;">Plas User: </h2>
     </div>
-    
+
+    <%= render "post_users/form", post: @post, post_user: @post.post_users.build %>
+
+    <hr class="hr">
     <div style="height: 200px; overflow: auto;">
       <% @post_users.each do |post_user| %>
         <%= render 'post_users/show', post: @post, post_user: post_user %>
-      <% end %> 
+      <% end %>  
     </div>
-    <%= render "post_users/form", post: @post, post_user: @post.post_users.build %>
-</div>
+  </div>
+<main>
+<style>
+    .hr{
+        color: #fff;
+        border-radius: 5px;
+        border: 5px solid #fff;
+    }
+
+    .bor-der{
+      border: 1px solid #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 5px #fff;
+    }
+
+    .div{
+      background-color: rgba(1,1,1,0.3);
+      border: 1px solid #fff;
+      border-radius: 10px;
+    }
+</style>
 <%# <%= form.submit class:"btn btn-success"%> 

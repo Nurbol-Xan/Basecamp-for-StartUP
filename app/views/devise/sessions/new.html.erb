@@ -5,11 +5,11 @@
       <h2 class="title">Log in</h2>
         <div class="input-field" type="text" class="form-control is-valid" id="validationServer01" value="Mark" required>
           <i class="fa fa-user"></i>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email"%>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email",  required: true %>
         </div>
         <div class="input-field">
           <i class="fa fa-lock"></i>
-          <%= f.password_field :password, autocomplete: "current-password", type:"password", placeholder:"Password"%>
+          <%= f.password_field :password, autocomplete: "current-password", type:"password", placeholder:"Password",  required: true %>
         </div>
 
           <% if devise_mapping.rememberable? %>
@@ -41,22 +41,22 @@
         <h2 class="title">Sign up</h2>
         <div class="input-field">
           <i class="fa fa-user"></i>
-          <%= f.text_field :name, type:"text", placeholder:"Username"%>
+          <%= f.text_field :name, type:"text", placeholder:"Username",  required: true %>
         </div>
         <div class="input-field">
           <i class="fa fa-envelope"></i>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", type:"email", placeholder:"Email",  required: true  %>
         </div> 
           <% if @minimum_password_length %>
           <em style="color: white;"><%= @minimum_password_length %> characters minimum</em>
           <% end %>
         <div class="input-field">
           <i class="fa fa-lock"></i>
-          <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password" %>
+          <%= f.password_field :password, autocomplete: "new-password",type:"password", placeholder:"Password",  required: true %>
         </div>
         <div class="input-field">
           <i class="fa fa-lock"></i>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", type:"password", placeholder:"Password confirmation" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", type:"password", placeholder:"Password confirmation",  required: true  %>
         </div>
         <%= f.submit "Sign up",type:"submit", class:"btn", value:"Sign up" %>
         <%# <p class="social-text">Or Sign up with social platforms</p>

@@ -33,17 +33,17 @@ class PostUsersController < ApplicationController
   end
 
   # PATCH/PUT /post_users/1 or /post_users/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @post_user.update(post_user_params)
-  #       format.html { redirect_to post_user_url(@post_user), notice: "Post user was successfully updated." }
-  #       format.json { render :show, status: :ok, location: @post_user }
-  #     else
-  #       format.html { render :edit, status: :unprocessable_entity }
-  #       format.json { render json: @post_user.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    respond_to do |format|
+      if @post_user.update(post_user_params_up)
+        format.html { redirect_to edit_post_path(@post), notice: "Post user was successfully updated." }
+        format.json { render :show, status: :ok, location: @post_user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @post_user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /post_users/1 or /post_users/1.json
   def destroy
@@ -66,5 +66,9 @@ class PostUsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_user_params
       params.require(:post_user).permit(:content)
+    end
+
+    def post_user_params_up
+      params.require(:post_user).permit(role: [])
     end
 end
