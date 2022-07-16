@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_09_150705) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -84,6 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_150705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.text "category"
     t.index ["post_id"], name: "index_post_users_on_post_id"
   end
 
@@ -95,6 +96,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_150705) do
     t.integer "views", default: 0
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "subtasks", force: :cascade do |t|
+    t.string "body"
+    t.integer "user_id", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_subtasks_on_task_id"
+    t.index ["user_id"], name: "index_subtasks_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -132,6 +143,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_150705) do
   add_foreign_key "discussions", "users"
   add_foreign_key "post_users", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "subtasks", "tasks"
+  add_foreign_key "subtasks", "users"
   add_foreign_key "tasks", "posts"
   add_foreign_key "tasks", "users"
 end

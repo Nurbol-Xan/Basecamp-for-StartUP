@@ -9,6 +9,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    @subtasks =  @task.answers.order(created_at: :desc)
   end
 
   # GET /tasks/new

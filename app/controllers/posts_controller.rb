@@ -30,7 +30,6 @@ class PostsController < ApplicationController
       if current_user != @post.user
         @post.update(views: @post.views + 1)
       end
-      @comments = @post.comments.order(created_at: :desc) 
       @tasks = @post.tasks.order(created_at: :desc)
       @discussions = @post.discussions.order(created_at: :desc)
       @post_users = @post.post_users.order(created_at: :desc)

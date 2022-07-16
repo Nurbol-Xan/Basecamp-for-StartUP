@@ -6,4 +6,7 @@
   <div style="position: fixed; left: 20%; bottom: 30%">
   <%= link_to "Back to posts", posts_path, class:"btn btn-danger" %>
   </div>
+
+  <h2>Add Subtask</h2>
+  <%= render "subtasks/form", post: @post, task: @task,  subtask: @task.subtasks.build %>
 </div>
