@@ -4,10 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
-gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
+gem "pg", "~> 1.1"
 gem "stimulus-rails"
 gem "js-routes-rails"
 gem "jsbundling-rails"
@@ -41,3 +41,5 @@ gem "sassc-rails"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "pundit", "~> 2.2"
+
+

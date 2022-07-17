@@ -1,10 +1,17 @@
 <div class="post_user-<%= post_user.id %> container" style="color: white">
 <hr>
   <div class="btn-group float-end">
-    <%= form_with(model: [post, post_user]) do |f| %>
-      <%= f.collection_check_boxes :role, PostUser.roles, :first, :last %>
-      <%= f.submit "Add roles", class:"btn btn-primary" %>
+  
+
+  <%= form_with(model: [post, post_user]) do |form| %>
+    <% PostUser::CATEGORY.each do |role| %>
+      <%= form.check_box :category, {multiple: true, checked: form.object.category&.include?(role.to_s)}, role, nil %>
+      <%= form.label role %>
+      
     <% end %>
+    <%= form.submit "Add roles", class:"btn btn-primary" %>
+  <% end %>
+
     <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
   </div>
   <p><%= post_user.content %></p>

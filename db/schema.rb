@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_16_123740) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -51,8 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body"
-    t.integer "user_id", null: false
-    t.integer "discussion_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "discussion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discussion_id"], name: "index_answers_on_discussion_id"
@@ -60,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -70,8 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
 
   create_table "discussions", force: :cascade do |t|
     t.string "content"
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_discussions_on_post_id"
@@ -80,11 +83,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
 
   create_table "post_users", force: :cascade do |t|
     t.string "content"
-    t.integer "post_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
-    t.text "category"
+    t.text "category", default: [], array: true
     t.index ["post_id"], name: "index_post_users_on_post_id"
   end
 
@@ -94,14 +97,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "views", default: 0
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "subtasks", force: :cascade do |t|
     t.string "body"
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_subtasks_on_task_id"
@@ -110,8 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_100401) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "body"
-    t.integer "post_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_tasks_on_post_id"
