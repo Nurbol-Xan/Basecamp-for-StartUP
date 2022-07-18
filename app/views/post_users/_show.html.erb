@@ -4,16 +4,54 @@
   
 
   <%= form_with(model: [post, post_user]) do |form| %>
-    <% PostUser::CATEGORY.each do |role| %>
-      <%= form.check_box :category, {multiple: true, checked: form.object.category&.include?(role.to_s)}, role, nil %>
-      <%= form.label role %>
-      
-    <% end %>
+    <div class="rate">
+      <% PostUser::CATEGORY.each do |role| %>
+        <%= form.check_box :category, {multiple: true, checked: form.object.category&.include?(role.to_s)}, role, nil, :html => {:id => "star5", :value => "5")} %>
+        <%= form.label role %>
+      <% end %>
+    </div>
     <%= form.submit "Add roles", class:"btn btn-primary" %>
   <% end %>
-
+  
     <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
   </div>
   <p><%= post_user.content %></p>
 
 </div>
+<style>
+ .rate {
+      float: left;
+      height: 46px;
+      padding: 0 10px;
+  }
+  .rate:not(:checked) > input {
+      position:absolute;
+      top:-9999px;
+  }
+  .rate:not(:checked) > label {
+      float:right;
+      width:1em;
+      overflow:hidden;
+      white-space:nowrap;
+      cursor:pointer;
+      font-size:30px;
+      color:#ccc;
+  }
+  .rate:not(:checked) > label:before {
+      content: '★ ';
+  }
+  .rate > input:checked ~ label {
+      color: #ffc700;    
+  }
+  .rate:not(:checked) > label:hover,
+  .rate:not(:checked) > label:hover ~ label {
+      color: #deb217;  
+  }
+  .rate > input:checked + label:hover,
+  .rate > input:checked + label:hover ~ label,
+  .rate > input:checked ~ label:hover,
+  .rate > input:checked ~ label:hover ~ label,
+  .rate > label:hover ~ input:checked ~ label {
+      color: #c59b08;
+  }
+</style>

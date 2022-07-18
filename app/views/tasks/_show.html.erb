@@ -9,25 +9,16 @@
 
   <fieldset class="tasks-list">
     <label class="tasks-list-item">
-      <input type="checkbox" name="task_2" value="1" class="tasks-list-cb" checked>
-      <span class="tasks-list-mark"></span>
-      <span class="tasks-list-desc"><%= task.body %></span>
+      <%= check_box_tag "tasks_ids[]", task.id, nil, {multiple: true, form: :bulk_actions_form }%>
+      <%= task.body %>
     </label>
   </fieldset>
 
-  <div style="height: 200px; overflow: auto;">
+  <div class="container">
     <% task.subtasks.each do |subtask| %>
       <%= render 'subtasks/show', task: task, subtask: subtask %>
     <% end %> 
   </div>
-
-  <%# <div class="form-check mb-3"> 
-    <input type="checkbox" class="form-check-input" id="validationFormCheck1" required> 
-    <label class="form-check-label" for="validationFormCheck1"></label> 
-    <div class="invalid-feedback">Example invalid feedback text</div> 
-  </div> %>
-   
-    <%# <%= link_to 'Back to tasks',[post, task], class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
 <style>
   .tasks-list-item {

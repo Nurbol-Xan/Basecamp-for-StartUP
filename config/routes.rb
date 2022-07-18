@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :post_users
 
     resources :tasks do 
+      collection do 
+        patch :bulk_update
+      end
+
       resources :subtasks
     end
     

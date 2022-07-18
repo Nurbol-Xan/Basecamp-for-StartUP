@@ -21,6 +21,18 @@ class TasksController < ApplicationController
   def edit
   end
 
+  def bulk_update
+    @selected_tasks =  Task.where(id: params.fetch(:tasks_ids, []).compact)
+
+    if params[:commit] == 'disabled'
+      @selected_tasks.update_all(status: :disabled)
+    elsif params[:commit] == 'active'
+      @selected_tasks.update_all(status: :active)
+    end
+
+    redirect_to post_path(@post)
+  end
+
   # POST /tasks or /tasks.json
   def create
     @task = @post.tasks.create(task_params)
