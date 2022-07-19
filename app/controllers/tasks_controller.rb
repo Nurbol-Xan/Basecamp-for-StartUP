@@ -24,10 +24,10 @@ class TasksController < ApplicationController
   def bulk_update
     @selected_tasks =  Task.where(id: params.fetch(:tasks_ids, []).compact)
 
-    if params[:commit] == 'disabled'
-      @selected_tasks.update_all(status: :disabled)
-    elsif params[:commit] == 'active'
-      @selected_tasks.update_all(status: :active)
+    if params[:commit] == 'finished'
+      @selected_tasks.update_all(status: :finished)
+    elsif params[:commit] == 'continues'
+      @selected_tasks.update_all(status: :continues)
     end
 
     redirect_to post_path(@post)
@@ -37,6 +37,7 @@ class TasksController < ApplicationController
   def create
     @task = @post.tasks.create(task_params)
     @task.user = current_user
+    @task.status = :continues
 
     if @task.save
       flash[:notice] = "Task has been created"

@@ -13,6 +13,9 @@
       <%= task.body %>
     </label>
   </fieldset>
+  <div>
+    <p>Status: <%= task.status %></p>
+  </div>
 
   <div class="container">
     <% task.subtasks.each do |subtask| %>
@@ -81,5 +84,29 @@
       color: #34bf6e;
       text-decoration: line-through;
     }
+</style>
+<style>
+
+  input[type="checkbox"]{
+    visibility:hidden;
+    margin: 10px;
+    padding: 100;
+    font-size: 25px;
+    cursor:pointer;
+  }
+
+  input[type="checkbox"]:before{
+    content: "\270B";
+    position: absolute;
+    visibility:visible;
+    color: white;
+  }
+
+  input[type="checkbox"]:checked:before{
+    content: "\270A";
+    position: absolute;
+    color: yellow;
+  }
+
 </style>
 

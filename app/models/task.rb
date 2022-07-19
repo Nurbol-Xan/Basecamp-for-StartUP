@@ -4,5 +4,5 @@ class Task < ApplicationRecord
     has_many :subtasks, dependent: :destroy
 
 
-    enum status: { active: 'active', disabled: 'disabled' }
+    enum status: { continues: 'continues', finished: 'finished' }
 end
