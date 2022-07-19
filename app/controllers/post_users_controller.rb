@@ -65,6 +65,6 @@ class PostUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_user_params
-      params.require(:post_user).permit(:content, category: [])
+      params.require(:post_user).permit(:content, category: [], role: [])
     end
 end

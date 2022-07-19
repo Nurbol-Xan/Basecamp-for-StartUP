@@ -1,9 +1,17 @@
 <h1 class="text-light text-center">New post</h1>
-
-<%= render "form", post: @post %>
-
+<div class="container">
+  <%= render "form", post: @post %>
+</div>
 <br>
 
-<div style="position: fixed; left: 35%; bottom: 30%">
-  <%= link_to "Back to posts", posts_path,class:"btn btn-danger" %>
-</div>
+
+  <%= link_to "Back to posts", posts_path,class:"btn btn-danger not_but" %>
+
+<style>
+   .not_but{
+    position: absolute;
+    top: 260px;
+    left: 30%;
+  }
+</style>
+

@@ -25,11 +25,13 @@
         </div>
       </div>
       <hr>
-      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <%= form.submit class:"btn btn-success"%>
-      </div>
-      
-<script>
-    
-</script>
+        <%= form.submit class:"btn btn-success not_bot" %>
+   
+<style>
+  .not_bot{
+    position: absolute;
+    top: 260px;
+    left: 80%;
+  }
+</style>
 <% end %>

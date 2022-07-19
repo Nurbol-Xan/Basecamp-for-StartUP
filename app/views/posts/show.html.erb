@@ -20,10 +20,17 @@
           <td><%= @post.name %></td> 
           <td><%= @post.description %></td> 
           <td><%= @post.user.name %></td>
-          <td><%= @post.user.name %>
-          <% @post_users.each do |post_user| %>
-            <hr><%= post_user.content %>  <span style="color: blue;">category: </span><%= post_user.category.each do |role| role end %> 
-          <% end %></td>
+          <td><%= @post.user.name %><span style="color: blue;"><br>role: </span><%= "Admin" %>
+            <% @post_users.each do |post_user| %>
+              <hr>
+              <%= post_user.content %>  <span style="color: blue;"><br>role: </span>
+              <% if post_user.role.include?('admin') %>
+                <%= "Admin" %> 
+              <% elsif post_user.role.include?('user') %>
+                <%= "User" %>
+              <% end %> 
+            <% end %>
+          </td>
           <td><%= @post.created_at.strftime("%B %d %Y, %H:%M%P")%></td> 
           <td><%= @post.updated_at.strftime("%B %d %Y, %H:%M%P")%></td>
           <td><%= @post.tasks.length %></td> 
@@ -79,7 +86,7 @@
   </div><br><br><br><br>
 <% else %>
   <% @post_users.each do |post_user| %>
-    <% if post_user.category.include?("admin") %>
+    <% if post_user.role.include?("admin") %>
       <ul class="ui filters" style="margin: 10px">
         <li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
         <li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
@@ -94,6 +101,7 @@
 
       <div class="container-fluid">
         <h2 style="color: white; text-align: center;">Tasks: </h2>
+        <% if post_user.role.include?("admin") || post_user.category.include?("t_read") %>
         <h4 style="color: white;">Active:    <%= @tasks.active.count %></h4>
         <h4 style="color: white;">Disabled:  <%= @tasks.disabled.count %></h4>
         <div class="container">
@@ -101,9 +109,8 @@
             <%= form.submit "active"%>
             <%= form.submit "disabled"%>
           <% end %>
-      ` </div>
+        </div>
       </div>
-      <% if @post.user == current_user || post_user.category.include?("admin") || post_user.category.include?("t_read") %>
         <div style="height: 500px; overflow: auto;">
           <% @tasks.each do |task| %>
             <%= render 'tasks/show', post: @post, task: task%>
@@ -112,7 +119,7 @@
       <% else %>
         <p style="color: yellow;">You are not authorized to view!</p>
       <% end %>
-      <% if @post.user == current_user || post_user.category.include?("admin") || post_user.category.include?("t_read") && post_user.category.include?("t_write") %>
+      <% if  post_user.role.include?("admin") || post_user.category.include?("t_read") && post_user.category.include?("t_write") %>
         <%= render "tasks/form", post: @post, task: @post.tasks.build %>
       <% end %>
     </div>
@@ -124,7 +131,7 @@
       <div class="container-fluid">
         <h2 style="color: white; text-align: center;">Discussion: </h2>
       </div>
-      <% if @post.user == current_user || post_user.category.include?("admin") %>
+      <% if post_user.role.include?("admin") %>
         <%= render "discussions/form", post: @post, discussion: @post.discussions.build %>
       <% end %>
       <div>
@@ -132,7 +139,6 @@
           <%= render 'discussions/show', post: @post, discussion: discussion %>
         <% end %> 
       </div>
-      
     </div><br><br><br><br>
     <% break %>
   <% end %>

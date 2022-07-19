@@ -1,57 +1,67 @@
 <div class="post_user-<%= post_user.id %> container" style="color: white">
 <hr>
   <div class="btn-group float-end">
-  
+    <%= form_with(model: [post, post_user]) do |form| %>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+          Role
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+          <% PostUser::ROLE.each do |roly| %>
+            <li>
+              <%= form.check_box :role, {multiple: true, checked: form.object.role&.include?(roly.to_s)}, roly, nil %>  |
+              <%= form.label roly %>
+            <hr>
+            </li>
+          <% end %>
+          <li><%= form.submit "Add roles", class:"dropdown-item active"%></li>
+        </ul>
+      </div>
+    <% end %>
 
-  <%= form_with(model: [post, post_user]) do |form| %>
-    <div class="rate">
-      <% PostUser::CATEGORY.each do |role| %>
-        <%= form.check_box :category, {multiple: true, checked: form.object.category&.include?(role.to_s)}, role, nil, :html => {:id => "star5", :value => "5")} %>
-        <%= form.label role %>
-      <% end %>
-    </div>
-    <%= form.submit "Add roles", class:"btn btn-primary" %>
-  <% end %>
-  
-    <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
+    <%= form_with(model: [post, post_user]) do |form| %>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+          Role for task
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+          <% PostUser::CATEGORY.each do |role| %>
+            <li>
+                <%= form.check_box :category, {multiple: true, checked: form.object.category&.include?(role.to_s)}, role, nil %>  |
+                <%= form.label role %>
+            <hr>
+            </li>
+          <% end %>
+          <li><%= form.submit "Add roles", class:"dropdown-item active"%></li> 
+        </ul>
+      </div>
+    <% end %>
+      <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
   </div>
   <p><%= post_user.content %></p>
-
 </div>
+
 <style>
- .rate {
-      float: left;
-      height: 46px;
-      padding: 0 10px;
+
+  input[type="checkbox"]{
+    visibility:hidden;
+    margin: 10px;
+    padding: 100;
+   
+    cursor:pointer;
   }
-  .rate:not(:checked) > input {
-      position:absolute;
-      top:-9999px;
+
+  input[type="checkbox"]:before{
+    content: "\2606";
+    position: absolute;
+    visibility:visible;
+    color: white;
   }
-  .rate:not(:checked) > label {
-      float:right;
-      width:1em;
-      overflow:hidden;
-      white-space:nowrap;
-      cursor:pointer;
-      font-size:30px;
-      color:#ccc;
+
+  input[type="checkbox"]:checked:before{
+    content: "\2605";
+    position: absolute;
+    color: yellow;
   }
-  .rate:not(:checked) > label:before {
-      content: '★ ';
-  }
-  .rate > input:checked ~ label {
-      color: #ffc700;    
-  }
-  .rate:not(:checked) > label:hover,
-  .rate:not(:checked) > label:hover ~ label {
-      color: #deb217;  
-  }
-  .rate > input:checked + label:hover,
-  .rate > input:checked + label:hover ~ label,
-  .rate > input:checked ~ label:hover,
-  .rate > input:checked ~ label:hover ~ label,
-  .rate > label:hover ~ input:checked ~ label {
-      color: #c59b08;
-  }
+
 </style>
