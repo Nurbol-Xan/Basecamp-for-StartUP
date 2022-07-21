@@ -5,4 +5,5 @@ class Post < ApplicationRecord
     has_many :discussions, dependent: :destroy
     accepts_nested_attributes_for :tasks
     accepts_nested_attributes_for :discussions
+    has_many_attached :files
 end

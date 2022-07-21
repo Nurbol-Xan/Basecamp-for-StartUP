@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   
   resources :posts do
-    
     resources :post_users
 
     resources :tasks do 
@@ -29,6 +28,8 @@ Rails.application.routes.draw do
     resources :discussions do 
       resources :answers
     end
+
+    delete "attachments/:id/purge", to: "posts#delete_file", as: "purge_attachment"
   end
  
 

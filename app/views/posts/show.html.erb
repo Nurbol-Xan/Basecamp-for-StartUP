@@ -56,12 +56,14 @@
         <h4 style="color: white;">Continues:    <%= @tasks.continues.count %></h4>
         <h4 style="color: white;">Finished:  <%= @tasks.finished.count %></h4>
       </div><br>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      
         <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
-          <%= form.submit "continues", class:"btn btn-warning me-md-2", type:"button" %>
-          <%= form.submit "finished", class:"btn btn-success", type:"button" %>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <%= form.submit "continues", class:"btn btn-warning me-md-2" %>
+            <%= form.submit "finished", class:"btn btn-success" %>
+          </div>
         <% end %>
-      </div>
+      
     </div>
       <div style="height: 500px; overflow: auto;">
         <% @tasks.each do |task| %>
@@ -110,8 +112,8 @@
         </div><br>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
-            <%= form.submit "continues", class:"btn btn-warning me-md-2", type:"button" %>
-            <%= form.submit "finished", class:"btn btn-success", type:"button" %>
+            <%= form.submit "continues", class:"btn btn-warning me-md-2" %>
+            <%= form.submit "finished", class:"btn btn-success" %>
           <% end %>
         </div>
       </div>
@@ -147,6 +149,38 @@
     <% break %>
   <% end %>
 <% end %>
+
+  <div class="container bor-der" id="attachment" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
+    <div class="container-fluid border-bottom border-5">
+      <h2 style="color: white; text-align: center;">Attachment: </h2>
+    
+      <%= form_with(model: @post, class: "contents") do |form| %>
+        <div class="input-group mb-3">
+            <%= form.file_field :files, multiple: true, class:"form-control", aria_describedby:"fileinput", required: true %>
+            <%= form.submit "Add file", class:"btn btn-primary", id:"fileinput" %> 
+        </div>
+      <% end %>
+      </div>
+      <div style="height: 500px; overflow: auto;">
+        <% if @post.files.attached? %>
+          <% @post.files.each do |file| %>
+            <%= link_to "Delte attachment", purge_file_path(file), method: :delete %>
+
+            <% if file.variable? %>
+              <%= link_to(image_tag(file,  width:"100px"), rails_blob_path(file, disposition: "attachment"))%>
+            <% else %>
+              <%= link_to file.blob.filename, rails_blob_path(file, disposition: "attachment") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+
+ 
+
+ 
+   
+
 </main>
 <style rel="stylesheet">
       .bor-der{
