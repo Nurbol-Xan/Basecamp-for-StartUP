@@ -56,10 +56,10 @@
         <h4 style="color: white;">Continues:    <%= @tasks.continues.count %></h4>
         <h4 style="color: white;">Finished:  <%= @tasks.finished.count %></h4>
       </div><br>
-      <div class="container">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
-          <%= form.submit "continues", class:"button_a"%>
-          <%= form.submit "finished", class:"button_d"%>
+          <%= form.submit "continues", class:"btn btn-warning me-md-2", type:"button" %>
+          <%= form.submit "finished", class:"btn btn-success", type:"button" %>
         <% end %>
       </div>
     </div>
@@ -104,14 +104,14 @@
       <div class="container-fluid border-bottom border-5">
         <h2 style="color: white; text-align: center;">Tasks: </h2>
         <% if post_user.role.include?("admin") || post_user.category.include?("t_read") %>
-        <div class="bor-der container"  style="padding: 10px">
+        <div class="bor-der container" style="padding: 10px">
           <h4 style="color: white;">Continues:    <%= @tasks.continues.count %></h4>
           <h4 style="color: white;">Finished:  <%= @tasks.finished.count %></h4>
-        <div><br>
-        <div class="container">
+        </div><br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
-            <%= form.submit "continues", class:"button_a"%>
-            <%= form.submit "finished", class:"button_d"%>
+            <%= form.submit "continues", class:"btn btn-warning me-md-2", type:"button" %>
+            <%= form.submit "finished", class:"btn btn-success", type:"button" %>
           <% end %>
         </div>
       </div>
@@ -153,27 +153,6 @@
         border: 1px solid #fff;
         border-radius: 10px;
         box-shadow: 0px 0px 5px #fff;
-      }
-      .button_a{
-        position: absolute;
-        padding: 5px;
-        top: 444px;
-        left: 70%;
-        color: #000;
-        background-color: yellow;
-        border: #fff;
-        border-radius: 10px;
-      }
-
-      .button_d{
-        position: absolute;
-        padding: 5px;
-        top: 484px;
-        left: 70%;
-        color: #fff;
-        background-color: green;
-        border: #fff;
-        border-radius: 10px;
       }
       
       table{ 
