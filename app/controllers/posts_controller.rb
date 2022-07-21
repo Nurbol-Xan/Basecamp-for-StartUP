@@ -89,12 +89,7 @@ class PostsController < ApplicationController
   end
 
   
-  def delete_file
-    attachment = ActiveStorage::Attachment.find(params[:id])
-    attachment.purge
-    redirect_back fallback_location: root_path, notice: "success"
-  end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
 

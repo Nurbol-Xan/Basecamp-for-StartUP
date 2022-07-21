@@ -153,24 +153,12 @@
   <div class="container bor-der" id="attachment" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
     <div class="container-fluid border-bottom border-5">
       <h2 style="color: white; text-align: center;">Attachment: </h2>
-    
-      <%= form_with(model: @post, class: "contents") do |form| %>
-        <div class="input-group mb-3">
-            <%= form.file_field :files, multiple: true, class:"form-control", aria_describedby:"fileinput", required: true %>
-            <%= form.submit "Add file", class:"btn btn-primary", id:"fileinput" %> 
-        </div>
-      <% end %>
+      <%= render 'attachments/form', post: @post %>
       </div>
       <div style="height: 500px; overflow: auto;">
         <% if @post.files.attached? %>
           <% @post.files.each do |file| %>
-            <%= link_to "Delte attachment", purge_file_path(file), method: :delete %>
-
-            <% if file.variable? %>
-              <%= link_to(image_tag(file,  width:"100px"), rails_blob_path(file, disposition: "attachment"))%>
-            <% else %>
-              <%= link_to file.blob.filename, rails_blob_path(file, disposition: "attachment") %>
-            <% end %>
+            <%= render 'attachments/show', post: @post, file: file %>
           <% end %>
         <% end %>
       </div>

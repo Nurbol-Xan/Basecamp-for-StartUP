@@ -28,11 +28,11 @@ Rails.application.routes.draw do
     resources :discussions do 
       resources :answers
     end
-
-    delete "attachments/:id/purge", to: "posts#delete_file", as: "purge_attachment"
+    
   end
  
-
+  delete "attachments/:id/purge", to: "attachments#purge", as:"purge_file"
+  
   get 'about', to: 'pages#about'
 
   

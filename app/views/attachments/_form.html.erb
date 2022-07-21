@@ -1,0 +1,6 @@
+ <%= form_with(model: @post, class: "contents") do |form| %>
+    <div class="input-group mb-3">
+        <%= form.file_field :files, multiple: true, class:"form-control", aria_describedby:"fileinput", required: true %>
+        <%= form.submit "Add file", class:"btn btn-primary", id:"fileinput" %> 
+    </div>
+<% end %>
