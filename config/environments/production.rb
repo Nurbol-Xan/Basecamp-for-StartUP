@@ -6,6 +6,23 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.active_storage.service = :digitalocean
+  config.active_storage.variant_processor = :mini_magick
+
+  # If a default host is specifically defined then it's used otherwise the app is
+  # assumed to be a Heroku review app. Note that `Hash#fetch` is used defensively
+  # so the app will blow up at boot-time if both `DEFAULT_URL_HOST` and
+  # `HEROKU_APP_NAME` aren't defined.
+
+  host = ENV['DEFAULT_URL_HOST'] || "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
+  protocol = config.force_ssl ? 'https' : 'http'
+
+  config.action_controller.default_url_options = {
+    host: host,
+    protocol: protocol
+  }
+
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -38,7 +55,6 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -47,6 +63,8 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+
+  host
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
