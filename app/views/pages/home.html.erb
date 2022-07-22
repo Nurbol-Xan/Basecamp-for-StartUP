@@ -1,5 +1,78 @@
-<div class="container">
-    <h1>Pages#home</h1>
-    <p>Find me in app/views/pages/home.html.erb</p>
-    
+<div class="container" style="color: white;">
+ <div class="wrapper"> 
+    <main>
+        <div class="home-page">
+        <div class="block">
+            <h1>Welcome to my Basecamp</h1>
+            <p class="intro">I developed a clone version of Basecamp to allow people to share their projects with others and finish the project together.</p>
+            <p>Register now:</p>
+            <a href="/" class="button">Register</a>
+        </div>
+        </div>
+    </main>
+    </div>
+
+
 </div>
+<style>
+    .button { 
+        background-color: #000000; 
+        border: 2px solid #000000; 
+        color: #ffffff; 
+        display: inline-block; 
+        font-size: 18px; 
+        font-weight: 600; 
+        margin: 0; 
+        padding: 12px 32px 14px 32px; 
+        text-decoration: none; 
+        text-transform: uppercase; 
+    }
+    .button:hover { 
+        background-color: #ffffff; 
+        color: #000000; 
+    }
+
+    .site-header { 
+        background-color: #FEDF9E; 
+        margin: 5%; 
+    }
+
+    .intro{
+        padding: 10px;
+        width: 500px;
+        border: 2px solid #fff;
+        border-radius: 4px;
+    }
+
+    nav a { 
+        color: black; 
+        display: inline-block; 
+        margin: 0 4px; 
+        text-decoration: none; 
+    }
+
+    nav a:first-child { 
+        margin: 0 4px 0 0; 
+    }
+
+    main { 
+        margin: 0 5%; 
+    }
+
+    .home-page { 
+        display: grid; 
+        font-size: 24px;  
+        line-height: 1.4; 
+        margin: 2em auto 0 auto; 
+        max-width: 45em; 
+        padding: 0; 
+    }
+
+    .home-page h1 { 
+        font-size: 5em;  
+    }
+
+    .home-page .button {
+        margin: 1em 0; 
+    }
+</style>
