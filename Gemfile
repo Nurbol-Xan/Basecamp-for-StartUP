@@ -49,3 +49,5 @@ gem 'aws-sdk-s3'
 
 
 
+
+gem "pagy", "~> 5.10"
