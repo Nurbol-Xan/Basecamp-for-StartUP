@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
-    "@rails/actiontext": "^6.0.5",
+    "@rails/actiontext": "^7.0.3-1",
     "@rails/webpacker": "5.4.3",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "esbuild": "^0.14.49",
