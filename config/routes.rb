@@ -22,7 +22,11 @@ Rails.application.routes.draw do
         patch :bulk_update
       end
 
-      resources :subtasks
+      resources :subtasks do
+        collection do 
+          patch :bulk_update_subtasks
+        end
+      end
     end
     
     resources :discussions do 

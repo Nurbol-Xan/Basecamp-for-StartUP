@@ -7,13 +7,16 @@
     </div>
   <% end %>
 
-  <fieldset class="tasks-list">
+   <fieldset class="tasks-list">
     <label class="tasks-list-item">
-      <input type="checkbox" name="task_2" value="1" class="tasks-list-cb" checked>
-      <span class="tasks-list-mark"></span>
-      <span class="tasks-list-desc"><%= subtask.body %></span>
+      <%= check_box_tag "subtasks_ids[]", subtask.id, nil, {multiple: true, form: :bulk_actions_form }%>
+      <%= subtask.body %>
     </label>
   </fieldset>
+
+   <div>
+    <p>Status: <%= subtask.status %></p>
+  </div>
 
   <%# <div class="form-check mb-3"> 
     <input type="checkbox" class="form-check-input" id="validationFormCheck1" required> 
@@ -84,4 +87,28 @@
       color: #34bf6e;
       text-decoration: line-through;
     }
+</style>
+<style>
+
+  input[type="checkbox"]{
+    visibility:hidden;
+    margin: 10px;
+    padding: 100;
+    font-size: 25px;
+    cursor:pointer;
+  }
+
+  input[type="checkbox"]:before{
+    content: "\270B";
+    position: absolute;
+    visibility:visible;
+    color: white;
+  }
+
+  input[type="checkbox"]:checked:before{
+    content: "\270A";
+    position: absolute;
+    color: yellow;
+  }
+
 </style>

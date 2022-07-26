@@ -16,12 +16,6 @@
   <div>
     <p>Status: <%= task.status %></p>
   </div>
-
-  <div class="container">
-    <% task.subtasks.each do |subtask| %>
-      <%= render 'subtasks/show', task: task, subtask: subtask %>
-    <% end %> 
-  </div>
 </div>
 <style>
   .tasks-list-item {

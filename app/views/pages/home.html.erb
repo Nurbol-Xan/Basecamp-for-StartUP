@@ -6,7 +6,7 @@
             <h1>Welcome to my Basecamp</h1>
             <p class="intro">I developed a clone version of Basecamp to allow people to share their projects with others and finish the project together.</p>
             <p>Register now:</p>
-            <a href="/" class="button">Register</a>
+            <%= link_to "REGISTER", new_user_registration_path, class: "nav-link text-white navbar-brand btn btn-primary button" %>
         </div>
         </div>
     </main>
@@ -15,23 +15,9 @@
 
 </div>
 <style>
-    .button { 
-        background-color: #000000; 
-        border: 2px solid #000000; 
-        color: #ffffff; 
-        display: inline-block; 
-        font-size: 18px; 
-        font-weight: 600; 
-        margin: 0; 
-        padding: 12px 32px 14px 32px; 
-        text-decoration: none; 
-        text-transform: uppercase; 
+    .button{
+        margin: 10px;
     }
-    .button:hover { 
-        background-color: #ffffff; 
-        color: #000000; 
-    }
-
     .site-header { 
         background-color: #FEDF9E; 
         margin: 5%; 

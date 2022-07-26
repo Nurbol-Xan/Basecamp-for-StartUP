@@ -25,24 +25,37 @@ class SubtasksController < ApplicationController
   def create
     @subtask = @task.subtasks.build(subtask_params)
     @subtask.user_id = current_user.id
-    
+    @subtask.status = :continues
 
     respond_to do |format|
       if @subtask.save
-        format.html { redirect_to post_path(@post), notice: "Subtask was successfully created." }
+        format.html { redirect_to edit_post_task_path(@post, @task), notice: "Subtask was successfully created." }
       else
-        format.html { redirect_to post_path(@post), alert: "Subtask was not successfully created."}
+        format.html { redirect_to edit_post_task_path(@post, @task), alert: "Subtask was not successfully created."}
       end
     end
   end
+
+  def bulk_update_subtasks
+    @selected_subtasks =  Subtask.where(id: params.fetch(:subtasks_ids, []).compact)
+
+    if params[:commit] == 'finished'
+      @selected_subtasks.update_all(status: :finished)
+    elsif params[:commit] == 'continues'
+      @selected_subtasks.update_all(status: :continues)
+    end
+
+    redirect_to edit_post_task_path(@post, @task)
+  end
+
 
   # PATCH/PUT /subtasks/1 or /subtasks/1.json
   def update
     respond_to do |format|
       if @subtask.update(subtask_params)
-        format.html { redirect_to post_path(@post), notice: "Subtask was successfully updated." }
+        format.html { redirect_to edit_post_task_path(@post, @task), notice: "Subtask was successfully updated." }
       else
-        format.html {redirect_to post_path(@post), alert: "Subtask was not successfully update." }
+        format.html {redirect_to edit_post_task_path(@post, @task), alert: "Subtask was not successfully update." }
       end
     end
   end
@@ -52,7 +65,7 @@ class SubtasksController < ApplicationController
     @subtask.destroy
 
     respond_to do |format|
-      format.html { redirect_to post_path(@post), notice: "Subtask was successfully destroyed." }
+      format.html { redirect_to edit_post_task_path(@post, @task), notice: "Subtask was successfully destroyed." }
     end
   end
 
