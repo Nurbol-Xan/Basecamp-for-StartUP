@@ -14,7 +14,7 @@ Rails.application.configure do
   # so the app will blow up at boot-time if both `DEFAULT_URL_HOST` and
   # `HEROKU_APP_NAME` aren't defined.
 
-  host = ENV['DEFAULT_URL_HOST'] || "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
+  host = ENV['DEFAULT_URL_HOST'] || "basecamp-by-xan.herokuapp.com"
   protocol = config.force_ssl ? 'https' : 'http'
 
   config.action_controller.default_url_options = {
