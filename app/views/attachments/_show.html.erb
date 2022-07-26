@@ -2,8 +2,8 @@
     <hr>
     <% if current_user == post.user %>
         <div class="btn-group float-end">
-            <%= link_to 'Download attachment',  file, download:'', class:"btn btn-warning" %>
-            <%= button_to "Delete attachment", purge_file_path(file), class:"btn btn-danger", method: :delete %>
+            <%= link_to 'Download',  file, download:'', class:"btn btn-warning" %>
+            <%= button_to "Delete", purge_file_path(file), class:"btn btn-danger", method: :delete %>
         </div>
     <% end %>
 

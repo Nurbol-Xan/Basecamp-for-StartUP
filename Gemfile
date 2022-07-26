@@ -20,7 +20,7 @@ gem "rails_admin"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 gem "bootsnap", require: false
-
+gem 'devise_saml_authenticatable', '~> 1.3', '>= 1.3.2'
 gem "image_processing"
 
 group :development, :test do

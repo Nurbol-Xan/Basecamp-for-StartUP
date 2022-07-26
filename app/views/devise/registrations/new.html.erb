@@ -20,21 +20,7 @@
           <% end %>
 
         <%= f.submit "Log in", type:"submit", value:"Login", class:"btn solid"  %>
-        <%# <p class="social-text">Or Sign in with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div> %>
+
         <% end %>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name),  :html => {:class => 'sign-in-form'}) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -59,21 +45,6 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", type:"password", placeholder:"Password confirmation",  required: true  %>
         </div>
         <%= f.submit "Sign up",type:"submit", class:"btn", value:"Sign up" %>
-        <%# <p class="social-text">Or Sign up with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div> %>
       <% end %>
     </div>
   </div>

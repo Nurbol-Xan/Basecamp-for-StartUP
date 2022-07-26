@@ -2,8 +2,8 @@
  <hr>
     <% if current_user == discussion.user %>
     <div class="btn-group float-end">
-      <%= link_to 'Edit this discussion', edit_post_discussion_path(@post, discussion),  class:"btn btn-warning" %>
-      <%= button_to 'Destroy this discussion', [post, discussion], class:"btn btn-danger", method: :delete %>
+      <%= link_to 'Edit', edit_post_discussion_path(@post, discussion),  class:"btn btn-warning" %>
+      <%= button_to 'Destroy', [post, discussion], class:"btn btn-danger", method: :delete %>
     </div>
   <% end %>
 

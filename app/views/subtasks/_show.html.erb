@@ -2,8 +2,8 @@
 <hr>
   <% if current_user.id == subtask.user_id %>
     <div class="btn-group float-end">
-      <%= link_to 'Edit this subtask', edit_post_task_subtask_path(@post, task, subtask),  class:"btn btn-warning" %>
-      <%= button_to 'Destroy this subtask',post_task_subtask_path(@post, task, subtask), method: :delete,  class:"btn btn-danger" %>
+      <%= link_to 'Edit', edit_post_task_subtask_path(@post, task, subtask),  class:"btn btn-warning" %>
+      <%= button_to 'Destroy',post_task_subtask_path(@post, task, subtask), method: :delete,  class:"btn btn-danger" %>
     </div>
   <% end %>
 

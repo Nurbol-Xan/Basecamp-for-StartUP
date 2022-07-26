@@ -41,9 +41,9 @@
   </div>
 <% if @post.user == current_user %>
   <ul class="ui filters" style="margin: 10px">
-    <li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
-    <li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
-    <li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
+    <li class="all-btn"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+    <li class="online-btn"><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
+    <li class="offline-btn"><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
   </ul><br>
   
   <hr class="hr">
@@ -92,9 +92,9 @@
   <% @post_users.each do |post_user| %>
     <% if post_user.role.include?("admin") %>
       <ul class="ui filters" style="margin: 10px">
-        <li class="all-btn"><i class="circle icon"></i><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
-        <li class="online-btn"><i class="circle icon online-icon"></i><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
-        <li class="offline-btn"><i class="circle icon offline-icon"></i><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
+        <li class="all-btn"><%= link_to "Back to posts", posts_path, class:"btn btn-success" %></li>
+        <li class="online-btn"><%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-primary" %></li>
+        <li class="offline-btn"><%= button_to "Destroy this post", @post, method: :delete, class:"btn btn-danger" %></li>
       </ul><br>
     <% end %>
   
