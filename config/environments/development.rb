@@ -61,7 +61,7 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
-
+  config.paperclip_defaults = { s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com", }
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
