@@ -1,6 +1,6 @@
 <div class="answer-<%= answer.id %> container" style="color: white;">
     <hr>
-    <% if current_user.id == answer.user_id %>
+    <% if current_user.id == answer.user_id %> 
       <div class="btn-group float-end">
         <i class="fa-duotone fa-gear"></i><%= link_to 'Edit', edit_post_discussion_answer_path(@post, answer.discussion_id, answer.id),class:"btn btn-warning" %>
         <i class="fa-duotone fa-gear"></i><%= button_to 'Destroy', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>

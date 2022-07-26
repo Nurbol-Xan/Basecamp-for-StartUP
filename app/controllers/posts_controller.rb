@@ -12,30 +12,27 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    # @post.post_users.each do |post_user|
-    #   if post_user.content == current_user.email
-    #     @post.views = 1
-    #     if current_user != @post.user
-    #       @post.update(views: @post.views + 1)
-    #     end
-    #     @comments = @post.comments.order(created_at: :desc) 
-    #     @tasks = @post.tasks.order(created_at: :desc)
-    #     @discussions = @post.discussions.order(created_at: :desc)
-    #     @post_users = @post.post_users.order(created_at: :desc)
-    #   end
-    # end
-
-    # if current_user == @post.user 
-      @post.views = 1
-      if current_user != @post.user
-        @post.update(views: @post.views + 1)
+      if current_user == @post.user 
+        @post.views = 1
+        if current_user != @post.user
+          @post.update(views: @post.views + 1)
+        end
+        @tasks = @post.tasks.order(created_at: :desc)
+        @discussions = @post.discussions.order(created_at: :desc)
+        @post_users = @post.post_users.order(created_at: :desc)
+      else
+        @post.post_users.each do |post_user|
+            @post.views = 1
+            if current_user != @post.user
+              @post.update(views: @post.views + 1)
+            end
+            @tasks = @post.tasks.order(created_at: :desc)
+            @discussions = @post.discussions.order(created_at: :desc)
+            @post_users = @post.post_users.order(created_at: :desc)
+        end
+        
       end
-      @tasks = @post.tasks.order(created_at: :desc)
-      @discussions = @post.discussions.order(created_at: :desc)
-      @post_users = @post.post_users.order(created_at: :desc)
-    # else
-    #   redirect_to post_url(@post), alert: "You can't go there!" 
-    # end
+      # redirect_to posts_path, alert: "You can't go there!" 
     
   end
 
@@ -46,7 +43,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post_users = @post.post_users.order(created_at: :desc)
+    if current_user == @post.user 
+      @post_users = @post.post_users.order(created_at: :desc)
+    else
+      @post.post_users.each do |post_user|
+          @post_users = @post.post_users.order(created_at: :desc) 
+      end
+    end
   end
 
   # POST /posts or /posts.json

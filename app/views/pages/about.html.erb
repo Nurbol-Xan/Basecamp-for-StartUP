@@ -1,5 +1,484 @@
 <div class="container">
-    <h1>Pages#about</h1>
-    <p>Find me in app/views/pages/about.html.erb</p>
-    <%= link_to "Home", root_path %>
+    
+<section class="about-myself">
+  <div class="content">
+    <h2>Hi !</h2>
+    <p>I'm <span>name</span>.. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, dicta. Veniam pariatur minima voluptas culpa rem. Suscipit veritatis vel non neque alias, molestiae id incidunt natus ipsum vero, quod aut qui sequi quis laudantium <span>architecto exercitationem</span> recusandae eius. Incidunt velit quasi debitis, commodi vero optio nesciunt perspiciatis quidem quos accusantium! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius harum minima, ipsum animi. Provident quae hic, perspiciatis accusamus quaerat iure <span>tenetur</span> explicabo dicta quos aspernatur quis, delectus itaque vel.</p>
+  </div>
+</section>
+<section class="experience">
+  <div class="content">
+    <h1>Experience</h1>
+    <ul>
+      <li>
+        <div class="experience-content hidden">
+          <h2>Company</h2>
+          <div class="experience-time">Jan - Jun 2016</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias debitis praesentium itaque veniam dolorum cupiditate asperiores optio beatae, qui perferendis ipsam odit modi nemo natus corrupti neque quos distinctio facilis?</p>
+        </div>
+      </li>
+      <li>
+        <div class="experience-content hidden">
+          <h2>Company</h2>
+          <div class="experience-time">Jul - Dec 2015</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quas, reiciendis quis sequi voluptatem consectetur adipisci accusamus hic vel vero ea ad iure! Natus, ipsum, enim aspernatur fugit voluptatibus similique?</p>
+        </div>
+      </li>
+      <li>
+        <div class="experience-content hidden">
+          <h2>Company</h2>
+          <div class="experience-time">Mar - Jun 2015</div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quas, reiciendis quis sequi voluptatem consectetur adipisci accusamus hic vel vero ea ad iure! Natus, ipsum, enim aspernatur fugit voluptatibus similique?</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
 </div>
+<style>
+
+            a {
+            color: inherit;
+            text-decoration: none;
+            }
+
+            section {
+            position: relative;
+            width: 100%;
+            }
+
+            .content {
+                background: rgba(0, 0, 0, 0.5);
+                width: 100%;
+                height: 100%;
+
+                .header {
+                position: absolute;
+                top: 55%;
+                width: 100%;
+                -webkit-transform: translate(0%, -50%);
+                transform: translate(0%, -50%);
+                text-align: center;
+                opacity: 0;
+
+                h1 {
+                    color: #fff;
+                    font-size: 2.5em;
+                    text-shadow: 0px 2px 3px #2d2d2d;
+                }
+                }
+            }
+            
+
+            /*##### ABOUT MYSELF SECTION #####*/
+
+            .about-myself {
+            padding: 50px 20px;
+
+            .content {
+                text-align: center;
+
+                h2 {
+                color: #3d3d3d;
+                font-size: 3em;
+                margin-bottom: 20px;
+                -webkit-transform: translateY(-50px) scale(0);
+                transform: translateY(-50px) scale(0);
+                -webkit-transition: transform 0.7s;
+                -moz-transition: transform 0.7s;
+                transition: transform 0.7s;
+                }
+
+                .aboutTitleVisible {
+                -webkit-transform: translateY(0px) scale(1);
+                transform: translateX(0px) scale(1);
+                }
+
+                p {
+                span {
+                    color: #c0392b;
+                    font-weight: bold;
+                }
+                }
+            }
+            }
+
+            /*##### EXPERIENCE SECTION #####*/
+
+            .experience {
+            background:  #002440;
+            padding: 50px 0;
+            overflow-x: hidden;
+
+            .content {
+                text-align: center;
+
+                h1 {
+                font-size: 2em;
+                color: #fff;
+                }
+
+                ul {
+                padding: 50px 0;
+                list-style-type: none;
+
+                li {
+                    background: #f5f5f5;
+                    position: relative;
+                    margin-left: 20px;
+                    width: 5px;
+                    padding-bottom: 40px;
+
+                    &:last-child {
+                    padding-bottom: 7px;
+                    }
+
+                    &:before {
+                    content: "";
+                    background:  #002440;
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    -webkit-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                    width: 20px;
+                    height: 20px;
+                    border: 4px solid #f5f5f5;
+                    }
+
+                    .hidden {
+                    opacity: 0;
+                    margin-left: 10vw;
+                    }
+
+                    .experience-content {
+                    background: #f5f5f5;
+                    position: relative;
+                    top: 7px;
+                    left: 48px;
+                    width: calc(100vw - 100px);
+                    padding: 20px;
+                    text-align: center;
+                    -webkit-border-radius: 0 5px 5px;
+                    -moz-border-radius: 0 5px 5px;
+                    border-radius: 0 5px 5px;
+
+                    h2 {
+                        font-size: 1.5em;
+                        color: #3c3c3c;
+                        padding-bottom: 10px;
+                    }
+
+                    .experience-time {
+                        color: #777;
+                        font-size: 1.1em;
+                        padding-bottom: 10px;
+                    }
+
+                    p {
+                        color: #1a1a1a;
+                        font-size: 0.95em;
+                    }
+
+                    &:before {
+                        content: "";
+                        background: #f5f5f5;
+                        position: absolute;
+                        top: 0;
+                        left: -35px;
+                        width: 35px;
+                        height: 5px;
+                    }
+                    }
+                }
+                }
+            }
+            }
+
+            /* ############################
+                    RESPONSIVE
+            ############################### */
+
+            @media screen and (min-width: 480px) {
+            .skills .content {
+                .tools-knowledge-wrapper {
+                .tools-wrapper,
+                .knowledge-wrapper {
+                    width: 50%;
+                    float: left;
+                    padding: 0;
+
+                    ul {
+                    margin-left: 0;
+                    }
+                }
+                }
+                .clear {
+                clear: both;
+                }
+            }
+            }
+
+            @media screen and (min-width: 640px) {
+            .about-myself {
+                padding: 100px 40px;
+            }
+
+            .skills {
+                padding-left: 0;
+                padding-right: 0;
+
+                .content {
+                .development-wrapper {
+                    width: 600px;
+                    margin: auto;
+                    margin-bottom: 50px;
+                }
+
+                .tools-knowledge-wrapper {
+                    width: 600px;
+                    margin: auto;
+                }
+                }
+            }
+
+            .contact {
+                .content {
+                .socials {
+                    width: 600px;
+                    margin: auto;
+                }
+                }
+            }
+            }
+
+            @media screen and (min-width: 960px) {
+            .experience {
+                .content {
+                ul {
+                    li {
+                    margin: 0 auto;
+
+                    .experience-content {
+                        width: 40vw;
+                    }
+
+                    &:nth-child(odd) .experience-content {
+                        left: 63px;
+                    }
+                    &:nth-child(odd) .experience-content:before {
+                        left: -50px;
+                        width: 50px;
+                    }
+                    &:nth-child(even) .experience-content {
+                        left: calc(-40vw - 57px);
+                        -webkit-border-radius: 5px 0px 5px 5px;
+                        -moz-border-radius: 5px 0px 5px 5px;
+                        border-radius: 5px 0px 5px 5px;
+                    }
+                    &:nth-child(even) .experience-content:before {
+                        left: auto;
+                        right: -50px;
+                        width: 50px;
+                    }
+                    &:nth-child(odd) .hidden {
+                        margin-left: 10vw;
+                    }
+                    &:nth-child(even) .hidden {
+                        margin-left: -10vw;
+                    }
+                    }
+                }
+                }
+            }
+
+            .skills {
+                padding-left: 50px;
+                padding-right: 50px;
+
+                .content {
+                max-width: 1100px;
+                margin: auto;
+
+                .development-wrapper,
+                .tools-knowledge-wrapper {
+                    float: left;
+                }
+
+                .development-wrapper {
+                    margin-bottom: 0;
+                    width: 60%;
+                }
+
+                .tools-knowledge-wrapper {
+                    width: 40%;
+                    margin-top: 60px;
+
+                    .tools-wrapper,
+                    .knowledge-wrapper {
+                    float: none;
+                    margin: auto;
+                    }
+
+                    .tools-wrapper {
+                    margin-bottom: 30px;
+                    }
+                }
+                }
+            }
+
+            .portfolio {
+                .content {
+                .projects {
+                    .project {
+                    position: relative;
+                    margin: auto;
+                    margin-bottom: 3%;
+                    width: 680px;
+                    height: 450px;
+                    overflow: hidden;
+
+                    &:hover .project-image {
+                        -webkit-transform: scale(0.5);
+                        transform: scale(0.5);
+                    }
+
+                    &:hover .project-title,
+                    &:hover .project-description {
+                        opacity: 1;
+                    }
+
+                    .project-image {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        -webkit-transition: transform 0.5s ease;
+                        transition: transform 0.5s ease;
+                        -webkit-transform-origin: left top;
+                        transform-origin: left top;
+                        z-index: 3;
+                        overflow: hidden;
+
+                        img {
+                        width: 100%;
+                        height: auto;
+                        min-height: 100%;
+                        min-width: 100%;
+                        }
+                    }
+                    .project-title,
+                    .project-description {
+                        position: absolute;
+                        height: 50%;
+                        opacity: 0;
+                        -webkit-transition: opacity 0.3s linear;
+                        transition: opacity 0.3s linear;
+                        overflow: hidden;
+                    }
+
+                    .project-title {
+                        width: 50%;
+                        top: 0;
+                        right: 0;
+                        padding: 10px;
+                        text-align: center;
+                        display: table;
+
+                        h2 {
+                        font-size: 2em;
+                        text-decoration: underline;
+                        display: table-cell;
+                        vertical-align: middle;
+                        }
+                    }
+
+                    .project-description {
+                        width: 100%;
+                        top: 50%;
+                        left: 0;
+                        padding: 25px 10px;
+                        text-align: left;
+                    }
+                    }
+                }
+                }
+            }
+            }
+
+</style>
+<script>
+    $( document ).ready(function() {
+    // Main variables
+        var $aboutTitle = $('.about-myself .content h2');
+        var $developmentWrapper = $('.development-wrapper');
+        var developmentIsVisible = false;
+
+
+    /* ####### HERO SECTION ####### */
+
+    $('.hero .content .header').delay(500).animate({
+        'opacity':'1',
+        'top': '50%'
+    },1000);
+
+
+    $(window).scroll( function(){
+
+        var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+        /* ##### ABOUT MYSELF SECTION #### */
+        if( bottom_of_window > ($aboutTitle.offset().top + $aboutTitle.outerHeight())){
+        $('.about-myself .content h2').addClass('aboutTitleVisible');
+        } 
+    /* ##### EXPERIENCE SECTION #### */
+
+        // Check the location of each element hidden */
+        $('.experience .content .hidden').each( function(i){
+
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+
+            /* If the object is completely visible in the window, fadeIn it */
+            if( bottom_of_window > bottom_of_object ){
+
+                $(this).animate({
+                'opacity':'1',
+                'margin-left': '0'
+                },600);
+            }
+        });
+
+    /*###### SKILLS SECTION ######*/
+
+        var middle_of_developmentWrapper = $developmentWrapper.offset().top + $developmentWrapper.outerHeight()/2;
+
+        if((bottom_of_window > middle_of_developmentWrapper)&& (developmentIsVisible == false)){
+
+        $('.skills-bar-container li').each( function(){
+
+            var $barContainer = $(this).find('.bar-container');
+            var dataPercent = parseInt($barContainer.data('percent'));
+            var elem = $(this).find('.progressbar');
+            var percent = $(this).find('.percent');
+            var width = 0;
+
+            var id = setInterval(frame, 15);
+
+            function frame() {
+            if (width >= dataPercent) {
+                clearInterval(id);
+            } else {
+                width++;
+                elem.css("width", width+"%");
+                percent.html(width+" %");
+            }
+            }
+        });
+        developmentIsVisible = true;
+        }
+    }); // -- End window scroll --
+    });
+
+</script>
