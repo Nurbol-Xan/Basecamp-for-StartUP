@@ -12,7 +12,7 @@ amazon:
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: <%= ENV['AWS_REGION'] %>
   bucket: my-bucket
-  s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com"
+  
   
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
