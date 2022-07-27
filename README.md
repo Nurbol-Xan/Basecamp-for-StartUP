@@ -11,8 +11,9 @@
         - [Register](#register-or-login-to-the-created-account)
         - [About the project](#about-the-project)
         - [About task and subtask](#about-task-and-subtask)
-        - [About discussion](#about-discussion)
+        - [About discussion and answer](#about-discussion-and-answer)
         - [About attachments](#about-attachment)
+    - [Project User and Admin](#project-user-and-admin)
 - [Conclusion](#conclusion)
 
 
@@ -47,7 +48,7 @@ I made this project following [Basecamp](https://basecamp.com/). Its main featur
 ![This is a task and a subtask gif](/photo_readmy/task_and_subtask.gif)
 
 #
-> ### About discussion:
+> ### About discussion and answer:
 #
 
 ![This is a discussion gif](/photo_readmy/discussion.gif)
@@ -58,7 +59,15 @@ I made this project following [Basecamp](https://basecamp.com/). Its main featur
 
 ![This is a attachment gif](/photo_readmy/attachment.gif)
 
-## Conclusion
+#
+## Project User and Admin:
+#
 
+![This is a role gif](/photo_readmy/role.gif)
+
+#
+## Conclusion:
+
+> In conclusion, during the course of making this project, I improved not only ruby ​​on rails, but also my ability to work in other projects.
 
 

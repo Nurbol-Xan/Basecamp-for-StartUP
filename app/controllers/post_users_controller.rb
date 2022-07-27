@@ -24,7 +24,7 @@ class PostUsersController < ApplicationController
     @post_user = @post.post_users.build(post_user_params)
 
     if @post_user.save
-      flash[:notice] = "Post user has been created #{@post_user.id}, #{@post.user_id}"
+      flash[:notice] = "Post user has been created!"
       redirect_to edit_post_path(@post)
     else
       flash[:alert] = "Post user not been created"
