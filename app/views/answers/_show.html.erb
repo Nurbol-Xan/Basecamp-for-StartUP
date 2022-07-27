@@ -1,10 +1,12 @@
 <div class="answer-<%= answer.id %> container" style="color: white;">
     <hr>
-    <% if current_user.id == answer.user_id %> 
+    <% post.post_users.each do |user|%>
+    <% if user.role.include?("admin") || current_user == post.user || current_user == answer.user %>
       <div class="btn-group float-end">
         <%= link_to 'Edit', edit_post_discussion_answer_path(@post, answer.discussion_id, answer.id),class:"btn btn-warning" %>
         <%= button_to 'Destroy', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
       </div>
+    <% end %>
     <% end %>
     <div class="container_a">
       <p class="answer_user"><%= answer.user.name %></p><hr>

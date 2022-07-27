@@ -1,10 +1,12 @@
 <div class="task-<%= task.id %> container" style="color: white">
 <hr>
-  <% if current_user == task.user %>
+  <% post.post_users.each do |user|%>
+    <% if user.role.include?("admin") || current_user == post.user || current_user == task.user %>
     <div class="btn-group float-end">
       <%= link_to 'Edit', edit_post_task_path(@post, task),  class:"btn btn-warning" %>
       <%= button_to 'Destroy', [post, task], class:"btn btn-danger", method: :delete %>
     </div>
+    <% end %>
   <% end %>
 
   <fieldset class="tasks-list">

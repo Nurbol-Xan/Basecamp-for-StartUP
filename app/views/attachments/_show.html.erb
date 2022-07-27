@@ -1,10 +1,12 @@
 <div class="container" style="color: white">
     <hr>
-    <% if current_user == post.user %>
-        <div class="btn-group float-end">
-            <%= link_to 'Download',  file, download:'', class:"btn btn-warning" %>
-            <%= button_to "Delete", purge_file_path(file), class:"btn btn-danger", method: :delete %>
-        </div>
+    <% post.post_users.each do |user|%>
+        <% if user.role.include?("admin") || current_user == post.user %>
+            <div class="btn-group float-end">
+                <%= link_to 'Download',  file, download:'', class:"btn btn-warning" %>
+                <%= button_to "Delete", purge_file_path(file), class:"btn btn-danger", method: :delete %>
+            </div>
+        <% end %>
     <% end %>
 
     <% if file.variable? %>

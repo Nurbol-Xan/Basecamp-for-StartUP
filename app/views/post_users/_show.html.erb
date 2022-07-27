@@ -19,6 +19,7 @@
       </div>
     <% end %>
 
+  <% if !post_user.role.include?("admin") %>
     <%= form_with(model: [post, post_user]) do |form| %>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,6 +37,7 @@
         </ul>
       </div>
     <% end %>
+  <% end %>
       <%= button_to 'Destroy', [post, post_user], class:"btn btn-danger", method: :delete %>
   </div>
   <p><%= post_user.content %></p>

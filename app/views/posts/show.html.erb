@@ -105,17 +105,19 @@
 
       <div class="container-fluid border-bottom border-5">
         <h2 style="color: white; text-align: center;">Tasks: </h2>
-        <% if post_user.role.include?("admin") || post_user.category.include?("t_read") %>
+        <% if post_user.role.include?("admin") || post_user.category.include?("task_read") %>
         <div class="bor-der container" style="padding: 10px">
           <h4 style="color: white;">Continues:    <%= @tasks.continues.count %></h4>
           <h4 style="color: white;">Finished:  <%= @tasks.finished.count %></h4>
         </div><br>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
-            <%= form.submit "continues", class:"btn btn-warning me-md-2" %>
-            <%= form.submit "finished", class:"btn btn-success" %>
-          <% end %>
-        </div>
+        <% if post_user.category.include?("task_read") && post_user.category.include?("task_update")%>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <%= form_with url: bulk_update_post_tasks_path(@post), method: :patch, id: :bulk_actions_form do |form|%>
+              <%= form.submit "continues", class:"btn btn-warning me-md-2" %>
+              <%= form.submit "finished", class:"btn btn-success" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
         <div style="height: 500px; overflow: auto;">
           <% @tasks.each do |task| %>
@@ -125,7 +127,7 @@
       <% else %>
         <p style="color: yellow;">You are not authorized to view!</p>
       <% end %>
-      <% if  post_user.role.include?("admin") || post_user.category.include?("t_read") && post_user.category.include?("t_write") %>
+      <% if  post_user.role.include?("admin") || post_user.category.include?("task_read") && post_user.category.include?("task_write") %>
         <%= render "tasks/form", post: @post, task: @post.tasks.build %>
       <% end %>
     </div>
