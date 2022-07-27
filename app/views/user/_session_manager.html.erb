@@ -22,8 +22,9 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" style="background-color: rgba(1,1,1,0.80);">
                     <li><a  href="#about" class="dropdown-item text-info" >About project</a></li>
                     <li><a href="#tasks" class="dropdown-item text-info">Task</a></li>
+                    <li><a href="#discussions" class="dropdown-item text-info">Discussion</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a href="#discussions" class="dropdown-item text-info">Discussions</a></li>
+                    <li><a href="#attachment" class="dropdown-item text-info">Attachment</a></li>
                 </ul>
             </li>
         <% else %>
@@ -50,6 +51,7 @@
                             <li><a  href="#about" class="dropdown-item text-info" >About project</a></li>
                             <li><a href="#tasks" class="dropdown-item text-info">Task</a></li>
                             <li><a href="#discussions" class="dropdown-item text-info">Discussions</a></li>
+                            <li><a href="#attachment" class="dropdown-item text-info">Attachment</a></li>
                             <li><%= link_to "Back to posts", posts_path, class:"dropdown-item text-info" %></li>
                         <% if post_user.role.include?("user")  || post_user.role.include?("user")  %>
                             <li><%= button_to 'Leave Project', [@post, post_user], method: :delete, class:"dropdown-item text-info" %></li>
