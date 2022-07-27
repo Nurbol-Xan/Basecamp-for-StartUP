@@ -9,7 +9,8 @@
 - [Homepage](#homepage)
     - [Instructions for use](#instructions-for-use)
         - [Register](#register-or-login-to-the-created-account)
-        - [Create a project](#create-a-project)
+        - [About the project](#about-the-project)
+        - [About task and subtask](#about-task-and-subtask)
 - [Conclusion](#conclusion)
 
 
@@ -29,11 +30,20 @@ I made this project following [Basecamp](https://basecamp.com/). Its main featur
 > ### Register or login to the created account:
 #
 
-![This is a gif](/photo_readmy/register.gif)
+![This is a register gif](/photo_readmy/register.gif)
+
 #
-> ### Create a project:
+> ### About the project:
 #
-![This is a gif](/photo_readmy/project.gif)
+
+![This is a project gif](/photo_readmy/project.gif)
+
+#
+> ### About task and subtask:
+#
+
+![This is a task and a subtask gif](/photo_readmy/task_subtask.gif)
+
 
 
 ## Conclusion
