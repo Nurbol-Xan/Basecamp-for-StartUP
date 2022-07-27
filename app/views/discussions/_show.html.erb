@@ -1,14 +1,20 @@
 <div class="discussion-<%= discussion.id %> container" style="color: white">
  <hr>
-  <% post.post_users.each do |user|%>
-    <% if user.role.include?("admin") || current_user == post.user || current_user == discussion.user %>
+  <% if current_user == discussion.user %>
       <div class="btn-group float-end">
         <%= link_to 'Edit', edit_post_discussion_path(@post, discussion),  class:"btn btn-warning" %>
         <%= button_to 'Destroy', [post, discussion], class:"btn btn-danger", method: :delete %>
       </div>
+  <% else %>
+    <% post.post_users.each do |user|%>
+      <% if user.role.include?("admin") || current_user == post.user %>
+        <div class="btn-group float-end">
+          <%= link_to 'Edit', edit_post_discussion_path(@post, discussion),  class:"btn btn-warning" %>
+          <%= button_to 'Destroy', [post, discussion], class:"btn btn-danger", method: :delete %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-
   <div class="container bor-der" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" >
     
     <div class="container-fluid">

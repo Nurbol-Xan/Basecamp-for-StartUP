@@ -1,14 +1,22 @@
 <div class="task-<%= task.id %> container" style="color: white">
 <hr>
-  <% post.post_users.each do |user|%>
-    <% if user.role.include?("admin") || current_user == post.user || current_user == task.user %>
-    <div class="btn-group float-end">
-      <%= link_to 'Edit', edit_post_task_path(@post, task),  class:"btn btn-warning" %>
-      <%= button_to 'Destroy', [post, task], class:"btn btn-danger", method: :delete %>
-    </div>
+  <% if current_user == post.user %>
+      <div class="btn-group float-end">
+        <%= link_to 'Edit', edit_post_task_path(@post, task),  class:"btn btn-warning" %>
+        <%= button_to 'Destroy', [post, task], class:"btn btn-danger", method: :delete %>
+      </div>
+  <% else %>
+    <% post.post_users.each do |user|%>
+      <div class="btn-group float-end">
+        <% if user.role.include?("admin") || current_user == task.user || user.category.include?("task_update") %>
+          <%= link_to 'Edit', edit_post_task_path(@post, task),  class:"btn btn-warning" %>
+        <% end %>
+        <% if user.role.include?("admin") || current_user == task.user || user.category.include?("task_delete") %>
+          <%= button_to 'Destroy', [post, task], class:"btn btn-danger", method: :delete %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
-
   <fieldset class="tasks-list">
     <label class="tasks-list-item">
       <%= check_box_tag "tasks_ids[]", task.id, nil, {multiple: true, form: :bulk_actions_form }%>
