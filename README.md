@@ -11,6 +11,8 @@
         - [Register](#register-or-login-to-the-created-account)
         - [About the project](#about-the-project)
         - [About task and subtask](#about-task-and-subtask)
+        - [About discussion](#about-discussion)
+        - [About attachments](#about-attachment)
 - [Conclusion](#conclusion)
 
 
@@ -42,9 +44,19 @@ I made this project following [Basecamp](https://basecamp.com/). Its main featur
 > ### About task and subtask:
 #
 
-![This is a task and a subtask gif](/photo_readmy/task_subtask.gif)
+![This is a task and a subtask gif](/photo_readmy/task_and_subtask.gif)
 
+#
+> ### About discussion:
+#
 
+![This is a discussion gif](/photo_readmy/discussion.gif)
+
+#
+> ### About attachment:
+#
+
+![This is a attachment gif](/photo_readmy/attachment.gif)
 
 ## Conclusion
 

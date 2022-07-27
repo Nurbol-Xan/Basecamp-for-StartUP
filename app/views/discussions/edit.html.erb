@@ -1,7 +1,10 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing discussion</h1>
+<main class="center aligned container">
+  <h1 class="text-light text-center">Editing discussion</h1>
 
-  <%= render "form", discussion: @discussion, post: @post %>
-
-  <%= link_to "Back", post_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+  <div class="container">
+    <%= render "form", discussion: @discussion, post: @post %>
+  </div>
+  <div class="btn">
+    <%= link_to "Back", post_path(@post), class:"btn btn-success" %>
+  </div>
+</main>
