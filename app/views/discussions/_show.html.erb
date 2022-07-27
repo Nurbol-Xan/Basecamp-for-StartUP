@@ -13,7 +13,7 @@
       <h2 style="color: white; text-align: center;"><%= discussion.content %></h2>
     </div>
 
-    <div style="height: 200px; overflow: auto;">
+    <div style="height: 400px; overflow: auto;">
       <% discussion.answers.each do |answer| %>
         <%= render 'answers/show', discussion: discussion, answer: answer %>
       <% end %> 

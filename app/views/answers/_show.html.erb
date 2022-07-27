@@ -2,10 +2,26 @@
     <hr>
     <% if current_user.id == answer.user_id %> 
       <div class="btn-group float-end">
-        <i class="fa-duotone fa-gear"></i><%= link_to 'Edit', edit_post_discussion_answer_path(@post, answer.discussion_id, answer.id),class:"btn btn-warning" %>
-        <i class="fa-duotone fa-gear"></i><%= button_to 'Destroy', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
+        <%= link_to 'Edit', edit_post_discussion_answer_path(@post, answer.discussion_id, answer.id),class:"btn btn-warning" %>
+        <%= button_to 'Destroy', post_discussion_answer_path(@post, discussion, answer), method: :delete, class:"btn btn-danger" %>
       </div>
     <% end %>
-    <p><%= answer.body %><p>
+    <div class="container_a">
+      <p class="answer_user"><%= answer.user.name %></p><hr>
+      <p><%= answer.body %><p>
+    </div>
 </div>
+<style>
+  .answer_user{
+    font-size: 12px;
+    color: #fff;
+  }
+  .container_a{
+    border: 1px solid #ddd;
+    border-radius: 5px 50px 0px 40px;
+  }
+  p{
+    padding: 0px 10px;
+  }
+</style>
 

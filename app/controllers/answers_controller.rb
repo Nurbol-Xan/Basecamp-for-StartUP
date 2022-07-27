@@ -24,8 +24,10 @@ class AnswersController < ApplicationController
   # POST /answers or /answers.json
   def create
     @answer = @discussion.answers.build(answer_params)
+    @answer.user = current_user
     @answer.user_id = current_user.id
     discussion_id = "discussion-" + @discussion.id.to_s
+
 
     respond_to do |format|
       if @answer.save

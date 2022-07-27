@@ -3,14 +3,20 @@
     <main>
         <div class="home-page">
         <div class="block">
-            <h1>Welcome to my Basecamp</h1>
-            <p class="intro">I developed a clone version of Basecamp to allow people to share their projects with others and finish the project together.</p>
+            <h1>Welcome</h1>
+            <h2>TO MY</h2>
+               <div class="container">
+                    <div class="title">BASECAMP </div> 
+                </div>
+            <p class="intro">I developed a clone version of Basecamp to allow people to share their projects with others and finish the project together.</p><br/>
             <div class="frame">
                 <%= link_to "REGISTER", new_user_registration_path, class:" btn custom-btn btn-9" %>
             </div>
             <br/>
         </div>
         </div>
+     
+        
     </main>
     </div>
 
@@ -25,9 +31,9 @@
 
     .intro{
         padding: 10px;
-        width: 500px;
+        width: 100%;
         border: 2px solid #fff;
-        border-radius: 4px;
+        border-radius: 5px;
     }
 
     nav a { 
@@ -91,6 +97,10 @@
     border: none;
     transition: all 0.3s ease;
     overflow: hidden;
+    position: absolute;
+    top: 90%;
+    right: 46%;
+
     }
     .btn-9:after {
     position: absolute;
@@ -121,4 +131,30 @@
         inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
     }
 
+</style>
+<style>
+       
+        h1, h2{
+            text-align: center;
+        }
+   
+        .title{
+        font-weight: 900;
+        color: transparent;
+        font-size: 130px;
+        background: url("https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/05/rainbow-nebula.jpg") repeat;
+        background-position: 50% 50%;
+        -webkit-background-clip: text;
+        position: relative;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        letter-spacing: -8px;
+        }
+        .subtitle{
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        padding-top:10px;
+        }
 </style>
